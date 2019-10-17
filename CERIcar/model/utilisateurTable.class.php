@@ -18,8 +18,6 @@ class utilisateurTable {
 		return $user; 
 	}
 
-  
 }
-
 
 ?>

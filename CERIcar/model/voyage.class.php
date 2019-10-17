@@ -4,13 +4,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /** 
  * @Entity
- * @Table(name="utilisateur")
+ * @Table(name="voyage")
  */
-class utilisateur {
+class voyage {
 
 	/** 
 	 * @Id
-	 * @Column(type="integer", nullable=false)
+	 * @Column(type="integer")
 	 * @GeneratedValue
 	 */ 
 	public $id;

@@ -1,7 +1,7 @@
-drop table reservation ;
-drop table voyage ;
-drop table trajet ;
-drop table utilisateur ;
+drop table IF EXISTS reservation ;
+drop table IF EXISTS voyage ;
+drop table IF EXISTS trajet ;
+drop table IF EXISTS utilisateur ;
 
 CREATE TABLE utilisateur (
  id SERIAL ,

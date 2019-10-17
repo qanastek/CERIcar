@@ -4,9 +4,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /** 
  * @Entity
- * @Table(name="jabaianb.utilisateur")
+ * @Table(name="etd.utilisateur")
  */
-class utilisateur{
+class utilisateur {
 
 	/** @Id @Column(type="integer")
 	 *  @GeneratedValue

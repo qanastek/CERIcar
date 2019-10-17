@@ -8,12 +8,12 @@
 
 ### Étape 1 : Prise en main
 
-- [ ] Déployez l'archive et personnalisez la (changez le nom de l’application...).
-- [ ] Testez le “helloWorld” pour vérifier son bon fonctionnement.
-- [ ] Définissez une action “superTest” qui prend deux paramètres dans l’url (param1 et
+- [x] Déployez l'archive et personnalisez la (changez le nom de l’application...).
+- [x] Testez le “helloWorld” pour vérifier son bon fonctionnement.
+- [x] Définissez une action “superTest” qui prend deux paramètres dans l’url (param1 et
 param2 par exemple) et affichez ce message: “j’ai compris <VALEUR PARAM1> ,
 super : <VALEUR PARAM2>”
-- [ ] Dans le layout, ajoutez un bandeau de notification permettant d'afficher un
+- [x] Dans le layout, ajoutez un bandeau de notification permettant d'afficher un
 message (de notification ou d'erreur) issu de l'exécution d'une action quelconque. 
 
 ### Étape 2 : Modèle de données et doctrine 

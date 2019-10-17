@@ -4,7 +4,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /** 
  * @Entity
- * @Table(name="etd.utilisateur")
+ * @Table(name="utilisateur")
  */
 class utilisateur {
 
@@ -27,7 +27,6 @@ class utilisateur {
 
 	/** @Column(type="string", length=200) */ 
 	public $avatar;
-
 	
 }
 

@@ -1,4 +1,5 @@
 <?php
+
 // Inclusion de la classe utilisateur
 require_once "utilisateur.class.php";
 

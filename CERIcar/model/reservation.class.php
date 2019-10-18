@@ -4,7 +4,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /** 
  * @Entity
- * @Table(name="reservation")
+ * @Table(name="jabaianb.reservation")
  */
 class reservation {
 
@@ -16,14 +16,16 @@ class reservation {
 	public $id;
 
 	/**
-	 * @OneToOne(targetEntity="voyage")
 	 * @Column(type="integer", nullable=false)
+	 * @OneToOne(targetEntity="voyage")
+	 * @JoinColumn(name="voyage", referencedColumnName="id")
 	 */ 
 	public $voyage;
 		
 	/**
-	 * @OneToOne(targetEntity="utilisateur")
 	 * @Column(type="integer", nullable=false)
+	 * @OneToOne(targetEntity="utilisateur")
+	 * @JoinColumn(name="voyageur", referencedColumnName="id")
 	 */ 
 	public $voyageur;
 

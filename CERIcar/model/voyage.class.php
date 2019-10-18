@@ -4,7 +4,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /** 
  * @Entity
- * @Table(name="voyage")
+ * @Table(name="jabaianb.voyage")
  */
 class voyage {
 
@@ -16,29 +16,38 @@ class voyage {
 	public $id;
 
 	/**
-	 * @Column(type="string", length=45)
+	 * @Column(type="integer", nullable=false)
+	 * @ManyToOne(targetEntity="utilisateur")
+	 * @JoinColumn(name="conducteur", referencedColumnName="id")
 	 */ 
-	public $identifiant;
-		
-	/**
-	 * @Column(type="string", length=45)
-	 */ 
-	public $pass;
+	public $conducteur;
 
 	/**
-	 * @Column(type="string", length=45)
+	 * @Column(type="integer", nullable=false)
+	 * @ManyToOne(targetEntity="trajet")
+	 * @JoinColumn(name="trajet", referencedColumnName="id")
 	 */ 
-	public $nom;
+	public $trajet;
 
 	/**
-	 * @Column(type="string", length=45)
+	 * @Column(type="integer", nullable=false)
 	 */ 
-	public $prenom;
+	public $tarif;
 
 	/**
-	 * @Column(type="string", length=200)
+	 * @Column(type="integer", nullable=false)
 	 */ 
-	public $avatar;
+	public $nbPlace;
+
+	/**
+	 * @Column(type="integer", nullable=false)
+	 */ 
+	public $heureDepart;
+
+	/**
+	 * @Column(type="string", length=500)
+	 */ 
+	public $contraintes;
 
 }
 

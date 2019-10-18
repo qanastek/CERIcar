@@ -5,17 +5,17 @@ require_once "voyage.class.php";
 
 class voyageTable {
 
-  	public static function getUserByLoginAndPass($login,$pass)
+  	public static function getVoyagesByTrajet($trajet) 
 	{
 		$em = dbconnection::getInstance()->getEntityManager() ;
 
-		$userRepository = $em->getRepository('utilisateur');
-		$user = $userRepository->findOneBy(array('identifiant' => $login, 'pass' => sha1($pass)));	
+		$voyageRepository = $em->getRepository('voyage');
+		$voyage = $voyageRepository->findBy(array('trajet' => $trajet));
 		
-		if ($user == false) {
+		if ($voyage == false) {
 			echo 'Erreur sql';
 		}
-		return $user; 
+		return $voyage; 
 	}
 
 }

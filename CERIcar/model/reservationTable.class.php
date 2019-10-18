@@ -5,17 +5,17 @@ require_once "reservation.class.php";
 
 class reservationTable {
 
-  	public static function getUserByLoginAndPass($login,$pass)
+  	public static function getReservationByVoyage($voyage)
 	{
 		$em = dbconnection::getInstance()->getEntityManager() ;
 
-		$userRepository = $em->getRepository('utilisateur');
-		$user = $userRepository->findOneBy(array('identifiant' => $login, 'pass' => sha1($pass)));	
+		$reservationRepository = $em->getRepository('reservation');
+		$reservation = $reservationRepository->findBy(array('voyage' => $voyage));	
 		
-		if ($user == false) {
+		if ($reservation == false) {
 			echo 'Erreur sql';
 		}
-		return $user; 
+		return $reservation; 
 	}
 
 }

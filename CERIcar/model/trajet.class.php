@@ -16,17 +16,17 @@ class trajet {
 	public $id;
 
 	/**
-	 * @Column(type="string", length=25, nullable=false)
+	 * @Column(type="string")
 	 */ 
 	public $depart;
 
 	/**
-	 * @Column(type="string", length=25, nullable=false)
+	 * @Column(type="string")
 	 */ 
 	public $arrivee;
 
 	/**
-	 * @Column(type="integer", nullable=false)
+	 * @Column(type="integer")
 	 */ 
 	public $distance;
 

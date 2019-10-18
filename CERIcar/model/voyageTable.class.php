@@ -1,9 +1,9 @@
 <?php
 
-// Inclusion de la classe utilisateur
-require_once "utilisateur.class.php";
+// Inclusion de la classe voyage
+require_once "voyage.class.php";
 
-class utilisateurTable {
+class voyageTable {
 
   	public static function getUserByLoginAndPass($login,$pass)
 	{

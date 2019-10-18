@@ -1,21 +1,24 @@
 <?php
 
-// Inclusion de la classe utilisateur
-require_once "utilisateur.class.php";
+// Inclusion de la classe trajet
+require_once "trajet.class.php";
 
-class utilisateurTable {
+class trajetTable {
 
-  	public static function getUserByLoginAndPass($login,$pass)
+  	public static function getTrajet($depart, $arrivee)
 	{
 		$em = dbconnection::getInstance()->getEntityManager() ;
 
-		$userRepository = $em->getRepository('utilisateur');
-		$user = $userRepository->findOneBy(array('identifiant' => $login, 'pass' => sha1($pass)));	
+		$trajetRepository = $em->getRepository('trajet');
+		$trajet = $trajetRepository->findOneBy(array(
+			'depart' => $depart,
+			'arrivee' => $arrivee
+		));
 		
-		if ($user == false) {
+		if ($trajet == false) {
 			echo 'Erreur sql';
 		}
-		return $user; 
+		return $trajet; 
 	}
 
 }

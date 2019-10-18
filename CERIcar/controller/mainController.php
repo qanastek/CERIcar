@@ -17,6 +17,64 @@ class mainController
 		return context::SUCCESS;
 	}
 
+	public static function searchVoyage($request,$context)
+	{
+		$context->allFrom = trajetTable::getDepartFromArrivee($context->to);
+		$context->allTo = trajetTable::getArriveeFromDepart($context->from);
+		return context::SUCCESS;
+	}
+
+	/**
+	 * Vue de saisie de la ville de départ
+	 *
+	 * @param $request
+	 * @param $context
+	 * @return void
+	 */
+	public static function searchVoyageFrom($request,$context)
+	{
+		// Je set la valeur de from
+		if (isset($_POST['from']) && !isset($context->to)) {
+			$context->from = $_POST['from'];
+			header("Location: monApplication.php?action=searchVoyageTo", true);
+		}
+		else if (isset($_POST['from']) && isset($context->to)) {
+			// Si on recoit FROM et que TO est déjà set
+			$context->from = $_POST['from'];
+			header("Location: monApplication.php?action=searchVoyage", true);
+		}
+		else {
+			$context->allFrom = trajetTable::getDepartFromArrivee($context->to);
+		}
+		return context::SUCCESS;
+	}
+
+	/**
+	 * Vue de saisie de la ville d'arrivé
+	 *
+	 * @param $request
+	 * @param $context
+	 * @return void
+	 */
+	public static function searchVoyageTo($request,$context)
+	{
+		// Je set la valeur de to
+		if (isset($_POST['to']) && !isset($context->from)) {
+			$context->to = $_POST['to'];
+			header("Location: monApplication.php?action=searchVoyageFrom", true);
+		}
+		else if (isset($_POST['to']) && isset($context->from)) {
+			// Si on recoit TO et que FROM est déjà set
+			$context->to = $_POST['to'];
+			header("Location: monApplication.php?action=searchVoyage", true);
+		}
+		else {
+			// Je limite les choix de to ainsi que je choisi to
+			$context->allTo = trajetTable::getArriveeFromDepart($context->from);
+		}
+		return context::SUCCESS;
+	}
+
 	public static function superTest($request,$context)
 	{		
 		$context->param1 = $_GET["param1"];

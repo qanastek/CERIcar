@@ -38,3 +38,7 @@ une collection contenant des objets de type reservation.
 utilisateur à son profil, c'est la méthode « getUserByLoginAndPass ».
   - [x] une seconde méthode, getUserById($id), est destinée à récupérer les
 informations d'un utilisateur selon un identifiant (id).
+
+Sources:
+ 
+* https://undraw.co/search - Pour les images dilustration

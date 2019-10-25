@@ -64,7 +64,7 @@ class trajetTable {
 	 * Fonction qui renvoie tout les arrivée pour un départs 
 	 *
 	 * @param String $depart
-	 * @return void
+	 * @return Trajet[]
 	 */
   	public static function getArriveeFromDepart($depart)
 	{

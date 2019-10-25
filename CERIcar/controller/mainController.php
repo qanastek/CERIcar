@@ -19,8 +19,6 @@ class mainController
 
 	public static function searchVoyage($request,$context)
 	{
-		$context->allFrom = trajetTable::getDepartFromArrivee($context->to);
-		$context->allTo = trajetTable::getArriveeFromDepart($context->from);
 		return context::SUCCESS;
 	}
 
@@ -65,17 +63,30 @@ class mainController
 	{
 		// Je set la valeur de to
 		if (isset($_POST['to']) && $_POST['to'] != null && !isset($_SESSION["from"])) {
-			$_SESSION["to"] = $_POST['to'];
-			header("Location: monApplication.php?action=searchVoyageFrom", true);
+
+			$context->setSessionAttribute(
+				"to",
+				$_POST['to']
+			);
+			
+			$context->redirect("monApplication.php?action=searchVoyageFrom");
 		}
+		// Si on recoit TO et que FROM est déjà set
 		else if (isset($_POST['to']) && $_POST['to'] != null && isset($_SESSION["from"])) {
-			// Si on recoit TO et que FROM est déjà set
-			$_SESSION["to"] = $_POST['to'];
-			header("Location: monApplication.php?action=searchVoyage", true);
+
+			$context->setSessionAttribute(
+				"to",
+				$_POST['to']
+			);
+
+			$context->redirect("monApplication.php?action=searchVoyage");
 		}
 		else {
+
 			// Je limite les choix de to ainsi que je choisi to
-			$context->allTo = trajetTable::getArriveeFromDepart($_SESSION["from"]);
+			$context->allTo = trajetTable::getArriveeFromDepart(
+				$context->getSessionAttribute("from")
+			);
 		}
 		return context::SUCCESS;
 	}
@@ -94,6 +105,21 @@ class mainController
 
 		$context->user1 = utilisateurTable::getUserByLoginAndPass("OM", "123456");
 		$context->user2 = utilisateurTable::getUserById(1);
+
+		return context::SUCCESS;
+	}
+
+	/**
+	 * Charge tout les voyages correspondant au trajet 
+	 */
+	public static function searchResult($request,$context) {
+		
+		$trajet = trajetTable::getTrajet(
+			$context->getSessionAttribute("from"),
+			$context->getSessionAttribute("to")
+		);
+		
+		$context->voyages = voyageTable::getVoyagesByTrajet($trajet->id);
 
 		return context::SUCCESS;
 	}

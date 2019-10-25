@@ -4,10 +4,12 @@
     
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+    <link rel="stylesheet" href="<?php echo $nameApp; ?>/view/css/app.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-   
+    <script src="https://kit.fontawesome.com/90e6e3675b.js" crossorigin="anonymous"></script>
+    
     <!-- Title in the tab -->
     <title>
      <?php echo $nameApp; ?>
@@ -17,13 +19,15 @@
 
   <body>
 
-    <div id="page_maincontent">	
+    <header>
       <?php include($context->getViewport("header")); ?>
-    </div>
+    </header>
 
     <?php include($context->getViewport("statusBar")); ?>
 
-    <?php include($context->getViewport("content")); ?>
+    <section class="mainContent">
+      <?php include($template_view); ?>
+    </section>
       
   </body>
 

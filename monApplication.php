@@ -31,13 +31,13 @@ $context->init($nameApp);
 // Lit la route actuelle
 $view = $context->executeAction($action, $_REQUEST);
 
-//traitement des erreurs de bases, reste a traiter les erreurs d'inclusion
+// Traitement des erreurs de bases, reste a traiter les erreurs d'inclusion
 if($view === false)
 {
 	echo "Une grave erreur s'est produite, il est probable que l'action " . $action . " n'existe pas...";
 	die;
 }
-//inclusion du layout qui va lui meme inclure le template view
+
 /**
 * Ouvre la vue correspondante à si le controller existe ou non
 */

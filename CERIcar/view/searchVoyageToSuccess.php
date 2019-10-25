@@ -1,14 +1,22 @@
-<p>
-    From: <?php echo (isset($_SESSION["from"])) ?  $_SESSION["from"] : "Vide"; ?>
-</p>
-<p>
-    To: <?php echo (isset($_SESSION["to"])) ? $_SESSION["to"] : "Vide"; ?>
-</p>
+<p class="titleSearch">Quelle est votre destination exacte ?</p>
 
 <form action="monApplication.php?action=searchVoyageTo" method="POST">
     <div class="form-group">
-        <label for="to">Arrivé</label>
-        <input type="text" class="form-control" list="citiesTo" name="to" autocomplete=off id="to" placeholder="Ville d'arrivé...">
+
+        <label for="to">Arrivée</label>
+
+        <div class="fieldSearchWrapper">
+            <input 
+                type="text"
+                class="form-control"
+                list="citiesTo"
+                name="to"
+                autocomplete=off
+                id="to"
+                placeholder="Ville de d'arrivé..."
+                value="<?php echo (isset($_SESSION["to"])) ? $_SESSION["to"] : "Ville d'arrivé"; ?>"
+            >
+        </div>
 
         <datalist id="citiesTo">
             <?php foreach($context->allTo as $trajet): ?>
@@ -21,5 +29,5 @@
     
     <br>
 
-    <button type="submit" class="btn btn-primary">Rechercher</button>
+    <button type="submit" class="btn btn-primary">Suivant</button>
 </form>

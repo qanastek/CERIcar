@@ -44,6 +44,10 @@ if($view === false)
 elseif($view != context::NONE)
 {
 	$template_view = $nameApp . "/view/" . $action . $view . ".php";
+
+	// Set le contenue centrale
+	$context->setViewport("content", $action);
+
 	include($nameApp."/layout/".$context->getLayout().".php");
 }
 

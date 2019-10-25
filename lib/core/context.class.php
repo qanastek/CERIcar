@@ -1,7 +1,16 @@
 <?php
 class context
 {
-    private $data;
+	private $data;
+
+	private $viewport = array(
+		"header" => "header",
+		"statusBar" => "banner",
+		"left" => null,
+		"content" => null,
+		"right" => null,
+		"footer" => "footer"
+	);
 
     const SUCCESS = "Success";
     const ERROR = "Error";
@@ -32,6 +41,22 @@ class context
 	{
        $this->name = $name;       
 	}
+
+	/**
+	 * Renvoie la view correspondant à la zone demandé
+	 */
+	public function getViewport($location)
+	{
+		return "CERIcar" . "/view/" . $this->viewport[$location] . "Success.php";
+	}
+
+	/**
+	 * Set une zone à une view spécifique 
+	 */
+	public function setViewport($location, $view)
+	{
+		$this->viewport[$location] = $view;
+	}
 	
 	public function getLayout()
 	{
@@ -53,11 +78,7 @@ class context
 	*/
 	public function executeAction($action,$request)
 	{
-		if ($action == "searchVoyage") {
-			$this->layout = "search";
-		} else {
-			$this->layout = "layout";
-		}
+		$this->layout = "layout";
 
 		// Vérifie qu'il existe une methode dans le main controller pour cette route
 		if(!method_exists('mainController',$action)) return false;

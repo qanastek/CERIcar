@@ -17,35 +17,18 @@
 
   <body>
 
-    <!-- Bandeau -->
-    <?php if($context->notification): ?>
-      <div class="alert alert-<?php echo $context->notification_status; ?>" role="alert">
-        <?php echo " $context->notification" ?>
-      </div>
-    <?php endif; ?>
-
-    <h2>Super c'est ton appli ! </h2>
-
-    <!-- Si l'utilisateur à la session de connection -->
-    <?php if($context->getSessionAttribute('user_id')): ?>
-	   <?php echo $context->getSessionAttribute('user_id') . " est connecte"; ?>
-    <?php endif; ?>
-
-    <div id="page">
-
-      <!-- Si il y a une erreur -->
-      <?php if($context->error): ?>
-      	<div id="flash_error" class="error">
-        	<?php echo " $context->error !!!!!" ?>
-      	</div>
-      <?php endif; ?>
-
-      <div id="page_maincontent">	
-      	<?php include($template_view); ?>
-      </div>
-
+    <div id="page_maincontent">	
+      <?php include($context->getViewport("header")); ?>
     </div>
+
+    <?php include($context->getViewport("statusBar")); ?>
+
+    <?php include($context->getViewport("content")); ?>
       
   </body>
+
+  <footer>
+    <?php include($context->getViewport("footer")); ?>
+  </footer>
 
 </html>

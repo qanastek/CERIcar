@@ -34,17 +34,17 @@ class mainController
 	public static function searchVoyageFrom($request,$context)
 	{
 		// Je set la valeur de from
-		if (isset($_POST['from']) && !isset($context->to)) {
-			$context->from = $_POST['from'];
+		if (isset($_POST['from']) && $_POST['from'] != null && !isset($_SESSION["to"])) {
+			$_SESSION["from"] = $_POST['from'];
 			header("Location: monApplication.php?action=searchVoyageTo", true);
 		}
-		else if (isset($_POST['from']) && isset($context->to)) {
+		else if (isset($_POST['from']) && $_POST['from'] != null && isset($_SESSION["to"])) {
 			// Si on recoit FROM et que TO est déjà set
-			$context->from = $_POST['from'];
+			$_SESSION["from"] = $_POST['from'];
 			header("Location: monApplication.php?action=searchVoyage", true);
 		}
 		else {
-			$context->allFrom = trajetTable::getDepartFromArrivee($context->to);
+			$context->allFrom = trajetTable::getDepartFromArrivee($_SESSION["to"]);
 		}
 		return context::SUCCESS;
 	}
@@ -59,18 +59,18 @@ class mainController
 	public static function searchVoyageTo($request,$context)
 	{
 		// Je set la valeur de to
-		if (isset($_POST['to']) && !isset($context->from)) {
-			$context->to = $_POST['to'];
+		if (isset($_POST['to']) && $_POST['to'] != null && !isset($_SESSION["from"])) {
+			$_SESSION["to"] = $_POST['to'];
 			header("Location: monApplication.php?action=searchVoyageFrom", true);
 		}
-		else if (isset($_POST['to']) && isset($context->from)) {
+		else if (isset($_POST['to']) && $_POST['to'] != null && isset($_SESSION["from"])) {
 			// Si on recoit TO et que FROM est déjà set
-			$context->to = $_POST['to'];
+			$_SESSION["to"] = $_POST['to'];
 			header("Location: monApplication.php?action=searchVoyage", true);
 		}
 		else {
 			// Je limite les choix de to ainsi que je choisi to
-			$context->allTo = trajetTable::getArriveeFromDepart($context->from);
+			$context->allTo = trajetTable::getArriveeFromDepart($_SESSION["from"]);
 		}
 		return context::SUCCESS;
 	}

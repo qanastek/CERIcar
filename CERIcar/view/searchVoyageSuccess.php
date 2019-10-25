@@ -1,13 +1,13 @@
 <form>
 
   <a class="btn btn-lg btn-primary" href="monApplication.php?action=searchVoyageFrom" role="button">
-    From: <?php echo ($context->from) ? $context->from : "Renseigné la ville de départ"; ?>
+    From: <?php echo (isset($_SESSION["from"])) ? $_SESSION["from"] : "Renseigné la ville de départ"; ?>
   </a>
 
   <br>
 
   <a class="btn btn-lg btn-primary" href="monApplication.php?action=searchVoyageTo" role="button">
-    To: <?php echo ($context->to) ? $context->to : "Renseigné la ville d'arrivé"; ?>
+    To: <?php echo (isset($_SESSION["to"])) ? $_SESSION["to"] : "Renseigné la ville d'arrivé"; ?>
   </a>
 
   <br>

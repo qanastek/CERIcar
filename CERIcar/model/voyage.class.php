@@ -16,14 +16,12 @@ class voyage {
 	public $id;
 
 	/**
-	 * @Column(type="integer", nullable=false)
 	 * @ManyToOne(targetEntity="utilisateur")
 	 * @JoinColumn(name="conducteur", referencedColumnName="id")
 	 */ 
 	public $conducteur;
 
 	/**
-	 * @Column(type="integer", nullable=false)
 	 * @ManyToOne(targetEntity="trajet")
 	 * @JoinColumn(name="trajet", referencedColumnName="id")
 	 */ 

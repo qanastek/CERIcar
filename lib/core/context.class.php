@@ -53,7 +53,11 @@ class context
 	*/
 	public function executeAction($action,$request)
 	{
-		$this->layout = "layout";
+		if ($action == "searchVoyage") {
+			$this->layout = "search";
+		} else {
+			$this->layout = "layout";
+		}
 
 		// Vérifie qu'il existe une methode dans le main controller pour cette route
 		if(!method_exists('mainController',$action)) return false;

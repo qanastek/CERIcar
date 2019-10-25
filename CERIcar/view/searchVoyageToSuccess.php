@@ -1,8 +1,8 @@
 <p>
-    From: <?php echo $context->from; ?>
+    From: <?php echo (isset($_SESSION["from"])) ?  $_SESSION["from"] : "Vide"; ?>
 </p>
 <p>
-    To: <?php echo $context->to; ?>
+    To: <?php echo (isset($_SESSION["to"])) ? $_SESSION["to"] : "Vide"; ?>
 </p>
 
 <form action="monApplication.php?action=searchVoyageTo" method="POST">

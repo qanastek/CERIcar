@@ -12,7 +12,7 @@ j’ai compris <?php echo $context->param1; ?> ,super: <?php echo $context->para
 
     <?php foreach($context->voyages as $voyage): ?>
     <p>
-        conducteur: <?php echo $voyage->conducteur; ?>
+        conducteur: <?php echo $voyage->conducteur->nom; ?>
     </p>
     <?php endforeach; ?>
 
@@ -20,7 +20,10 @@ j’ai compris <?php echo $context->param1; ?> ,super: <?php echo $context->para
 
     <?php foreach($context->reservations as $reservation): ?>
     <p>
-        voyageur: <?php echo $reservation->voyageur; ?>
+        voyageur: <?php echo $reservation->voyageur->nom; ?>
+    </p>
+    <p>
+        voyageur 2: <?php echo $reservation->voyage->trajet->arrivee; ?>
     </p>
     <?php endforeach; ?>
 

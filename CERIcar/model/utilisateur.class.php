@@ -10,7 +10,7 @@ class utilisateur {
 
 	/** 
 	 * @Id
-	 * @Column(type="integer", nullable=false)
+	 * @Column(type="integer")
 	 * @GeneratedValue
 	 */ 
 	public $id;

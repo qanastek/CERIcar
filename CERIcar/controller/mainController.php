@@ -33,18 +33,23 @@ class mainController
 	 */
 	public static function searchVoyageFrom($request,$context)
 	{
-		// Je set la valeur de from
-		if (isset($_POST['from']) && $_POST['from'] != null && !isset($_SESSION["to"])) {
+		// Si l'autre champs n'est pas remplit alors go à lui
+		if (isset($_POST['from']) && $_POST['from'] != null && !isset($_SESSION["to"]))
+		{
 			$_SESSION["from"] = $_POST['from'];
 			header("Location: monApplication.php?action=searchVoyageTo", true);
 		}
-		else if (isset($_POST['from']) && $_POST['from'] != null && isset($_SESSION["to"])) {
-			// Si on recoit FROM et que TO est déjà set
+		// Si l'autre champs est remplit alors go à la page d'accueil
+		else if (isset($_POST['from']) && $_POST['from'] != null && isset($_SESSION["to"]))
+		{
 			$_SESSION["from"] = $_POST['from'];
 			header("Location: monApplication.php?action=searchVoyage", true);
 		}
-		else {
+		else if(isset($_SESSION["to"])) {
 			$context->allFrom = trajetTable::getDepartFromArrivee($_SESSION["to"]);
+		}
+		else if(!isset($_SESSION["to"])) {
+			$context->allFrom = trajetTable::getAllDepart();
 		}
 		return context::SUCCESS;
 	}

@@ -13,7 +13,7 @@ class voyageTable {
 	 */
   	public static function getVoyagesByTrajet($trajet) 
 	{
-		$em = dbconnection::getInstance()->getEntityManager() ;
+		$em = dbconnection::getInstance()->getEntityManager();
 
 		$voyageRepository = $em->getRepository('voyage');
 		$voyage = $voyageRepository->findBy(array('trajet' => $trajet));

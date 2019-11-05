@@ -20,8 +20,8 @@
 
         <datalist id="citiesFrom">
             <?php foreach($context->allFrom as $trajet): ?>
-            <option id="<?php echo $trajet->depart; ?>">
-                <?php echo $trajet->depart; ?>
+            <option id="<?php echo $trajet["depart"]; ?>">
+                <?php echo $trajet["depart"]; ?>
             </option>
             <?php endforeach; ?>
         </datalist>

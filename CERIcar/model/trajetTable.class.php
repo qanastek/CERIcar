@@ -26,68 +26,85 @@ class trajetTable {
 	 * @return Trajet[] Liste de trajet
 	 */
 	public static function getAllDepart() {
-		$em = dbconnection::getInstance()->getEntityManager() ;
+		$em = dbconnection::getInstance()->getEntityManager();
 
-		$trajetRepository = $em->getRepository('trajet');
+		$queryBuilder = $em->createQueryBuilder();
 
-		$trajet = $trajetRepository->findAll();
+		$queryBuilder->select('t.depart')
+		->from(trajet::class, 't')
+		->distinct()
+		->orderBy('t.depart', 'ASC');
 		
-		if ($trajet == false) {
-			echo 'Erreur sql';
-		}
+		$rslt = $queryBuilder->getQuery()->execute();
 
-		return $trajet;
-	} 
-
-	/**
-	 *  Fonction qui renvoie tout les départs pour une arrivée
-	 *
-	 * @param String $arrivee
-	 * @return Trajet[] Liste de trajet
-	 */
-  	public static function getDepartFromArrivee($arrivee)
-	{
-		$em = dbconnection::getInstance()->getEntityManager() ;
-
-		$trajetRepository = $em->getRepository('trajet');
-
-		$trajet = $trajetRepository->findBy(array('arrivee' => $arrivee));
-		
-		if ($trajet == false) {
-			echo 'Erreur sql';
-		}
-
-		return $trajet;
+		return $rslt;
 	}
 
 	/**
-	 * Fonction qui renvoie tout les arrivée pour un départs 
-	 *
-	 * @param String $depart
-	 * @return Trajet[]
+	 * Fonction qui renvoie tout les départs pour une arrivée sans doublons
+	 * @param String $depart Nom de la ville de départ
+	 * @return Trajet[] Renvoie une Tableau de String avec comme seule clé "arrivee"
+	 */
+  	public static function getDepartFromArrivee($arrivee)
+	{
+		$em = dbconnection::getInstance()->getEntityManager();
+
+		$queryBuilder = $em->createQueryBuilder();
+
+		$queryBuilder->select('t.depart')
+		->from(trajet::class, 't')
+		->where('t.arrivee = :villeArrivee')
+		->setParameter('villeArrivee', $arrivee)
+		->distinct()
+		->orderBy('t.depart', 'ASC');
+		
+		$rslt = $queryBuilder->getQuery()->execute();
+
+		return $rslt;
+	}
+
+	
+	/**
+	 *  Fonction qui renvoie tout les arrivee
+	 * @return Trajet[] Liste de trajet
+	 */
+	public static function getAllArrivee() {
+
+		$em = dbconnection::getInstance()->getEntityManager();
+
+		$queryBuilder = $em->createQueryBuilder();
+
+		$queryBuilder->select('t.arrivee')
+		->from(trajet::class, 't')
+		->distinct()
+		->orderBy('t.arrivee', 'ASC');
+		
+		$rslt = $queryBuilder->getQuery()->execute();
+
+		return $rslt;
+	} 
+
+	/**
+	 * Fonction qui renvoie tout les arrivées pour un départ sans doublons
+	 * @param String $depart Nom de la ville de départ
+	 * @return Trajet[] Renvoie une Tableau de String avec comme seule clé "arrivee"
 	 */
   	public static function getArriveeFromDepart($depart)
 	{
-		$em = dbconnection::getInstance()->getEntityManager() ;
+		$em = dbconnection::getInstance()->getEntityManager();
 
-		$trajetRepository = $em->getRepository('trajet');
+		$queryBuilder = $em->createQueryBuilder();
 
-		// Si il y une destination de saisie
-		if ($depart) {
-			$trajet = $trajetRepository->findBy(array('depart' => $depart));
-		} else {
-			$trajet = $trajetRepository->findAll();
-		}
+		$queryBuilder->select('t.arrivee')
+		->from(trajet::class, 't')
+		->where('t.depart = :villeDepart')
+		->setParameter('villeDepart', $depart)
+		->distinct()
+		->orderBy('t.arrivee', 'ASC');
 		
-		if ($trajet == false) {
-			echo 'Erreur sql';
-		}
-		
-		if ($trajet == false) {
-			echo 'Erreur sql';
-		}
+		$rslt = $queryBuilder->getQuery()->execute();
 
-		return $trajet;
+		return $rslt;
 	}
 
 }

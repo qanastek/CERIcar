@@ -2,20 +2,20 @@
 
   <p class="titleSearch">Où voulez-vous aller ?</p>
 
-  <a class="fieldSearch" href="monApplication.php?action=searchVoyageFrom" role="button">
+  <a class="fieldSearch fieldSearchFrom" role="button">
     <?php echo (isset($_SESSION["from"])) ? $_SESSION["from"] : "Ville de départ"; ?>
   </a>
 
   <br>
 
-  <a class="fieldSearch" href="monApplication.php?action=searchVoyageTo" role="button">
+  <a class="fieldSearch fieldSearchTo" role="button">
     <?php echo (isset($_SESSION["to"])) ? $_SESSION["to"] : "Ville d'arrivé"; ?>
   </a>
 
   <br>
 
   <?php if($context->getSessionAttribute("from") && $context->getSessionAttribute("to")): ?>
-  <a class="searchButton" href="monApplication.php?action=searchResult" role="button">
+  <a class="searchButton" role="button">
     Rechercher
   </a>
   <?php endif; ?>

@@ -29,5 +29,6 @@
     
     <br>
 
-    <button type="submit" class="btn btn-primary">Suivant</button>
+    <a class="fromSubmit" role="button">SEND IT</a>
+    <!-- <button type="submit" class="btn btn-primary">Suivant</button> -->
 </form>

@@ -1,3 +1,9 @@
-Ceci est un super <?php echo $context->mavariable ?> ! dingue non ? 
+<p id="test">
+    Ceci est un super <?php echo $context->mavariable ?> ! dingue non ? 
+</p>
 
-<a role="button" href="monApplication.php?action=index" class="btn btn-primary">index</a>
+<button class="searchRoot">
+    go back to index
+</button>
+
+<button onclick="$('#test').css({'color':'red'});"></button>

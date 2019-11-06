@@ -61,7 +61,7 @@ class mainController
 	{
 		// Je set la valeur de to
 		if (isset($_POST['to']) && $_POST['to'] != null && !isset($_SESSION["from"])) {
-			$_SESSION["to"] = $_POST['to'];		
+			$_SESSION["to"] = $_POST['to'];
 			$context->redirect("monApplication.php?action=searchVoyageFrom");
 		}
 		// Si on recoit TO et que FROM est déjà set
@@ -101,15 +101,20 @@ class mainController
 	 * Charge tout les voyages correspondant au trajet 
 	 */
 	public static function searchResult($request,$context) {
-		
-		$trajet = trajetTable::getTrajet(
-			$context->getSessionAttribute("from"),
-			$context->getSessionAttribute("to")
-		);
-		
-		$context->voyages = voyageTable::getVoyagesByTrajet($trajet->id);
 
-		return context::SUCCESS;
+		if (isset($_GET["from"]) && isset($_GET["to"])) {
+			
+			$trajet = trajetTable::getTrajet(
+				$_GET["from"],
+				$_GET["to"]
+			);
+		
+			$context->voyages = voyageTable::getVoyagesByTrajet($trajet->id);
+	
+			return context::SUCCESS;
+		} else {
+			return context::ERROR;
+		}
 	}
 
 }

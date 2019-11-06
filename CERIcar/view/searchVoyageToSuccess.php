@@ -1,6 +1,6 @@
 <p class="titleSearch">Quelle est votre destination exacte ?</p>
 
-<form action="monApplication.php?action=searchVoyageTo" method="POST">
+<form action="monApplicationAjax.php?action=searchVoyageTo" method="POST">
     <div class="form-group">
 
         <label for="to">Arrivée</label>
@@ -29,5 +29,6 @@
     
     <br>
 
-    <button type="submit" class="btn btn-primary">Suivant</button>
+    <a class="fromSubmit" role="button">SEND IT</a>
+    <!-- <button type="submit" class="btn btn-primary toSubmit">Suivant</button> -->
 </form>

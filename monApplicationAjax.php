@@ -43,9 +43,7 @@ if($view === false)
 */
 elseif($view != context::NONE)
 {
-	// include($nameApp . "/view/" . $action . $view . ".php");
-	echo "bjr";
-	echo '<a role="button" class="btn btn-primary searchRoot">hi</a>';
+	include($nameApp . "/view/" . $action . $view . ".php");
 }
 
 ?>

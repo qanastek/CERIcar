@@ -3,7 +3,18 @@ $( document ).ready(function() {
     var test84 = 0;
 
     $(".searchRoot").click(function(){
-        console.log("test");
+        $.ajax({
+            url: "monApplicationAjax.php?action=index",
+            type: "get",
+            data: {},
+            success: function(response) {
+                $( "#mainContent" ).html(response);
+            },
+            error: function(xhr) {
+                console.log("fail");
+            }
+        });
+        $.getScript("CERIcar/view/js/app.js");
     });
 
     $(".searchButton").click(function(){
@@ -36,6 +47,7 @@ $( document ).ready(function() {
                 console.log("fail");
             }
         });
+        $.getScript("CERIcar/view/js/app.js");
     });
 
     $(".searchVoyage").click(function(){

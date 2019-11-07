@@ -1,7 +1,9 @@
 <!-- Bandeau -->
 <?php if($context->notification): ?>
     <div class="alert alert-<?php echo $context->notification_status; ?>" role="alert">
-    <?php echo " $context->notification" ?>
+        <p id="error_message">
+            <?php echo " $context->notification" ?>
+        </p>
     </div>
 <?php endif; ?>
 

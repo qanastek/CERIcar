@@ -31,7 +31,9 @@
       <?php include($context->getViewport("header")); ?>
     </header>
 
-    <?php include($context->getViewport("statusBar")); ?>
+    <div id="statusBar">
+      <?php include($context->getViewport("statusBar")); ?>
+    </div>
 
     <div id="mainContent">
       <?php include($template_view); ?>

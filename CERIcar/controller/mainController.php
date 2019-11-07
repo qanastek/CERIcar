@@ -111,12 +111,23 @@ class mainController
 			if (count($context->voyages) > 0) {
 				return context::SUCCESS;
 			} else {
+				$context->notification = "No result";
 				return context::NONE;
 			}
 	
 		} else {
+			$context->notification = "No from or destination";
 			return context::ERROR;
 		}
+	}
+
+	/**
+	 * Controller de la banner
+	 */
+	public static function banner($request,$context) {
+		$context->notification = "Tesing";
+		$context->notification_status = "warning";
+		return context::SUCCESS;
 	}
 
 }

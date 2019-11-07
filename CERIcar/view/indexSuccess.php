@@ -9,8 +9,6 @@ C'est l'action par défaut !
 
 <a role="button" class="btn btn-primary searchVoyage">Rechercher un voyage</a>
 
-<a role="button" class="btn btn-primary searchRoot">hi</a>
-
 <script>
 $(".helloWorld").click(function(){
     $.ajax({

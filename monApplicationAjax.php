@@ -41,9 +41,6 @@ if($view === false)
 /**
 * Renvoie la vue correspondante à si le controller existe ou non
 */
-elseif($view != context::NONE)
-{
-	include($nameApp . "/view/" . $action . $view . ".php");
-}
+include($nameApp . "/view/" . $action . $view . ".php");
 
 ?>

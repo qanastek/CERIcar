@@ -106,8 +106,14 @@ class mainController
 			);
 		
 			$context->voyages = voyageTable::getVoyagesByTrajet($trajet->id);
+
+			// Vérifier que l'ont a bien des voyages en retour
+			if (count($context->voyages) > 0) {
+				return context::SUCCESS;
+			} else {
+				return context::NONE;
+			}
 	
-			return context::SUCCESS;
 		} else {
 			return context::ERROR;
 		}

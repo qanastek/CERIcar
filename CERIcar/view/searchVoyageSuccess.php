@@ -2,15 +2,15 @@
 
   <p class="titleSearch">Où voulez-vous aller ?</p>
 
-  <a class="fieldSearch fieldSearchFrom" role="button">
+  <p class="fieldSearch fieldSearchFrom" role="button">
     <?php echo (isset($_SESSION["from"])) ? $_SESSION["from"] : "Ville de départ"; ?>
-  </a>
+  </p>
 
   <br>
 
-  <a class="fieldSearch fieldSearchTo" role="button">
+  <p class="fieldSearch fieldSearchTo" role="button">
     <?php echo (isset($_SESSION["to"])) ? $_SESSION["to"] : "Ville d'arrivé"; ?>
-  </a>
+  </p>
 
   <br>
 
@@ -23,6 +23,7 @@
 </div>
 
 <script>
+
 $(".searchVoyage").click(function(){
   $.get( "monApplicationAjax.php?action=searchVoyage", function(data) {
       $( "#mainContent" ).html( data );

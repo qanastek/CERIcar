@@ -21,3 +21,29 @@
   <?php endif; ?>
 
 </div>
+
+<script>
+$(".searchVoyage").click(function(){
+  $.get( "monApplicationAjax.php?action=searchVoyage", function(data) {
+      $( "#mainContent" ).html( data );
+  });
+});
+
+$(".searchButton").click(function(){
+    $.get( "monApplicationAjax.php?action=searchResult", function(data) {
+        $( "#mainContent" ).html( data );
+    });
+});
+
+$(".fieldSearchFrom").click(function(){
+    $.get( "monApplicationAjax.php?action=searchVoyageFrom", function(data) {
+        $( "#mainContent" ).html( data );
+    });
+});
+
+$(".fieldSearchTo").click(function(){
+    $.get( "monApplicationAjax.php?action=searchVoyageTo", function(data) {
+        $( "#mainContent" ).html( data );
+    });
+});
+</script>

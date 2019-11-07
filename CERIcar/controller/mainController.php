@@ -34,13 +34,11 @@ class mainController
 		if (isset($_POST['from']) && $_POST['from'] != null && !isset($_SESSION["to"]))
 		{
 			$_SESSION["from"] = $_POST['from'];
-			$context->redirect("monApplication.php?action=searchVoyageTo");
 		}
 		// Si l'autre champs est remplit alors go à la page d'accueil
 		else if (isset($_POST['from']) && $_POST['from'] != null && isset($_SESSION["to"]))
 		{
 			$_SESSION["from"] = $_POST['from'];
-			$context->redirect("monApplication.php?action=searchVoyage");
 		}
 		else if(isset($_SESSION["to"])) {
 			$context->allFrom = trajetTable::getDepartFromArrivee($_SESSION["to"]);
@@ -62,12 +60,10 @@ class mainController
 		// Je set la valeur de to
 		if (isset($_POST['to']) && $_POST['to'] != null && !isset($_SESSION["from"])) {
 			$_SESSION["to"] = $_POST['to'];
-			$context->redirect("monApplication.php?action=searchVoyageFrom");
 		}
 		// Si on recoit TO et que FROM est déjà set
 		else if (isset($_POST['to']) && $_POST['to'] != null && isset($_SESSION["from"])) {
 			$_SESSION["to"] = $_POST['to'];
-			$context->redirect("monApplication.php?action=searchVoyage");
 		}
 		else if(isset($_SESSION["to"])) {
 			$context->allTo = trajetTable::getArriveeFromDepart($_SESSION["from"]);
@@ -102,11 +98,11 @@ class mainController
 	 */
 	public static function searchResult($request,$context) {
 
-		if (isset($_GET["from"]) && isset($_GET["to"])) {
+		if (isset($_SESSION["from"]) && isset($_SESSION["to"])) {
 			
 			$trajet = trajetTable::getTrajet(
-				$_GET["from"],
-				$_GET["to"]
+				$_SESSION["from"],
+				$_SESSION["to"]
 			);
 		
 			$context->voyages = voyageTable::getVoyagesByTrajet($trajet->id);

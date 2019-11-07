@@ -1,6 +1,6 @@
 <p class="titleSearch">Quelle est votre destination exacte ?</p>
 
-<form action="monApplicationAjax.php?action=searchVoyageTo" method="POST">
+<div>
     <div class="form-group">
 
         <label for="to">Arrivée</label>
@@ -8,7 +8,7 @@
         <div class="fieldSearchWrapper">
             <input 
                 type="text"
-                class="form-control"
+                class="form-control to"
                 list="citiesTo"
                 name="to"
                 autocomplete=off
@@ -29,6 +29,28 @@
     
     <br>
 
-    <a class="fromSubmit" role="button">SEND IT</a>
-    <!-- <button type="submit" class="btn btn-primary toSubmit">Suivant</button> -->
-</form>
+    <button class="btn btn-primary toSubmit">Suivant</button>
+</div>
+
+<script>
+$(".toSubmit").click(function(){
+
+    var to = $(".to").val();
+
+    $.ajax({
+        url: "monApplicationAjax.php?action=searchVoyageTo",
+        type: "post",
+        data: {
+            "to": to
+        },
+        success: function(response) {
+            $.get( "monApplicationAjax.php?action=searchVoyage", function(data) {
+                $( "#mainContent" ).html( data );
+            });
+        },
+        error: function(xhr) {
+            console.log("fail");
+        }
+    });
+});
+</script>

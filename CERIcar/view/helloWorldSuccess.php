@@ -7,3 +7,19 @@
 </button>
 
 <button onclick="$('#test').css({'color':'red'});"></button>
+
+<script>
+$(".searchRoot").click(function(){
+    $.ajax({
+        url: "monApplicationAjax.php?action=index",
+        type: "get",
+        data: {},
+        success: function(response) {
+            $( "#mainContent" ).html(response);
+        },
+        error: function(xhr) {
+            console.log("fail");
+        }
+    });
+});
+</script>

@@ -1,6 +1,6 @@
 <p class="titleSearch">D'où partez-vous exactement ?</p>
 
-<form action="monApplication.php?action=searchVoyageFrom" method="POST">
+<div>
     <div class="form-group">
 
         <label for="from">Départ</label>
@@ -8,7 +8,7 @@
         <div class="fieldSearchWrapper">
             <input 
                 type="text"
-                class="form-control"
+                class="form-control from"
                 list="citiesFrom"
                 name="from"
                 autocomplete=off
@@ -20,15 +20,37 @@
 
         <datalist id="citiesFrom">
             <?php foreach($context->allFrom as $trajet): ?>
-            <option id="<?php echo $trajet["depart"]; ?>">
-                <?php echo $trajet["depart"]; ?>
-            </option>
+                <option id="<?php echo $trajet["depart"]; ?>">
+                    <?php echo $trajet["depart"]; ?>
+                </option>
             <?php endforeach; ?>
         </datalist>
     </div>
     
     <br>
 
-    <a class="fromSubmit" role="button">SEND IT</a>
-    <!-- <button type="submit" class="btn btn-primary">Suivant</button> -->
-</form>
+    <button class="btn btn-primary fromSubmit">Suivant</button>
+</div>
+
+<script>
+$(".fromSubmit").click(function(){
+
+    var from = $(".from").val();
+
+    $.ajax({
+        url: "monApplicationAjax.php?action=searchVoyageFrom",
+        type: "post",
+        data: {
+            "from": from
+        },
+        success: function(response) {
+            $.get( "monApplicationAjax.php?action=searchVoyage", function(data) {
+                $( "#mainContent" ).html( data );
+            });
+        },
+        error: function(xhr) {
+            console.log("fail");
+        }
+    });
+});
+</script>

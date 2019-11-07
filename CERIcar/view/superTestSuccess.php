@@ -32,3 +32,19 @@ j’ai compris <?php echo $context->param1; ?> ,super: <?php echo $context->para
     <p>user1: <?php echo $context->user1->nom; ?></p>
     <p>user2: <?php echo $context->user2->nom; ?></p>
 </div>
+
+<script>
+$(".searchRoot").click(function(){
+    $.ajax({
+        url: "monApplicationAjax.php?action=index",
+        type: "get",
+        data: {},
+        success: function(response) {
+            $( "#mainContent" ).html(response);
+        },
+        error: function(xhr) {
+            console.log("fail");
+        }
+    });
+});
+</script>

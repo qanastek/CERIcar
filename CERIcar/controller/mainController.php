@@ -33,12 +33,12 @@ class mainController
 		// Si l'autre champs n'est pas remplit alors go à lui
 		if (isset($_POST['from']) && $_POST['from'] != null && !isset($_SESSION["to"]))
 		{
-			$_SESSION["from"] = ucfirst($_POST['from']);
+			$_SESSION["from"] = ucfirst(strtolower($_POST['from']));
 		}
 		// Si l'autre champs est remplit alors go à la page d'accueil
 		else if (isset($_POST['from']) && $_POST['from'] != null && isset($_SESSION["to"]))
 		{
-			$_SESSION["from"] = ucfirst($_POST['from']);
+			$_SESSION["from"] = ucfirst(strtolower($_POST['from']));
 		}
 		else if(isset($_SESSION["to"])) {
 			$context->allFrom = trajetTable::getDepartFromArrivee($_SESSION["to"]);
@@ -59,11 +59,11 @@ class mainController
 	{
 		// Je set la valeur de to
 		if (isset($_POST['to']) && $_POST['to'] != null && !isset($_SESSION["from"])) {
-			$_SESSION["to"] = ucfirst($_POST['to']);
+			$_SESSION["to"] = ucfirst(strtolower($_POST['to']));
 		}
 		// Si on recoit TO et que FROM est déjà set
 		else if (isset($_POST['to']) && $_POST['to'] != null && isset($_SESSION["from"])) {
-			$_SESSION["to"] = ucfirst($_POST['to']);
+			$_SESSION["to"] = ucfirst(strtolower($_POST['to']));
 		}
 		else if(isset($_SESSION["to"])) {
 			$context->allTo = trajetTable::getArriveeFromDepart($_SESSION["from"]);

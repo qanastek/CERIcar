@@ -108,15 +108,18 @@ class mainController
 			$context->voyages = voyageTable::getVoyagesByTrajet($trajet->id);
 
 			// Vérifier que l'ont a bien des voyages en retour
-			if (count($context->voyages) > 0) {
+			if (count($context->voyages) > 0) {		
 				return context::SUCCESS;
 			} else {
-				$context->notification = "No result";
+				$_SESSION["notification"] = "No result";
+				$_SESSION["notification_status"] = "warning";
 				return context::NONE;
 			}
 	
 		} else {
-			$context->notification = "No from or destination";
+			$_SESSION["notification"] = "No from or destination";
+			$_SESSION["notification_status"] = "warning";
+			// throw new Exception("Empty field", 1);
 			return context::ERROR;
 		}
 	}
@@ -125,8 +128,9 @@ class mainController
 	 * Controller de la banner
 	 */
 	public static function banner($request,$context) {
-		$context->notification = "Tesing";
-		$context->notification_status = "warning";
+		// $context->notification = "Test";
+		// $context->notification_status = "warning";
+
 		return context::SUCCESS;
 	}
 

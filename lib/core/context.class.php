@@ -152,6 +152,26 @@ class context
 	{
 		$_SESSION[$attribute] = $value;
 	}
+
+	/**
+	 * Return the error message and destroy it
+	 * @return void String The error status
+	 */
+	public function getErrorMessage() {
+		$notification = $_SESSION["notification"];
+		unset($_SESSION['notification']);
+		return $notification;
+	}
+
+	/**
+	 * Return the error status and destroy it
+	 * @return void String The error status
+	 */
+	public function getErrorStatus() {
+		$notification_status = $_SESSION["notification_status"];
+		unset($_SESSION['notification_status']);
+		return $notification_status;
+	}
     
 	/**
 	 * Récupère une variable dans $data

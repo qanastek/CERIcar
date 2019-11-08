@@ -27,19 +27,23 @@
 
   <body>
 
-    <header>
+    <header class="pb-3">
       <?php include($context->getViewport("header")); ?>
     </header>
 
-    <div id="statusBar">
-      <?php include($context->getViewport("statusBar")); ?>
-    </div>
+    <main>
 
-    <div id="mainContent">
-      <?php include($template_view); ?>
-    </div>
+      <div id="statusBar">
+        <?php include($context->getViewport("statusBar")); ?>
+      </div>
 
-    <footer>
+      <div id="mainContent" style="min-height: 80vh;">
+        <?php include($template_view); ?>
+      </div>
+
+    </main>
+
+    <footer class="pt-3">
       <?php include($context->getViewport("footer")); ?>
     </footer>
       

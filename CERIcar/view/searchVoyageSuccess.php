@@ -32,12 +32,11 @@ $(".searchVoyage").click(function(){
 
 $(".searchButton").click(function(){
     $.get( "monApplicationAjax.php?action=searchResult", function(data) {
-
-        $( "#mainContent" ).html( data );
-
-        $.get( "monApplicationAjax.php?action=banner", function(banner) {
-            $( "#statusBar" ).html( banner );
-        });
+      $( "#mainContent" ).html( data );
+  
+      $.get( "monApplicationAjax.php?action=banner", function(banner) {
+          $( "#statusBar" ).html( banner );
+      });
     });
 });
 

@@ -1,8 +1,8 @@
 <!-- Bandeau -->
-<?php if($context->notification): ?>
-    <div class="alert alert-<?php echo $context->notification_status; ?>" role="alert">
+<?php if(isset($_SESSION["notification"]) && isset($_SESSION["notification_status"])): ?>
+    <div class="alert alert-<?php echo $context->getErrorStatus(); ?>" role="alert">
         <p id="error_message">
-            <?php echo " $context->notification" ?>
+            <?php echo $context->getErrorMessage(); ?>
         </p>
     </div>
 <?php endif; ?>

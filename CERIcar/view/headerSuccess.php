@@ -22,10 +22,10 @@
 
                 <?php if(!$context->getSessionAttribute('user_id')): ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="monApplication.php?action=register">Inscription</a>
+                    <a class="nav-link register">Inscription</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="monApplication.php?action=login">Connexion</a>
+                    <a class="nav-link login">Connexion</a>
                 </li>
                 <?php endif; ?>
 
@@ -39,6 +39,10 @@
 $(".home").click(function(){
     $.get( "monApplicationAjax.php?action=index", function(data) {
         $( "#mainContent" ).html( data );
+        
+        $.get( "monApplicationAjax.php?action=banner", function(banner) {
+            $( "#statusBar" ).html( banner );
+        });
     });
 });
 
@@ -46,11 +50,39 @@ $(".searchVoyage").click(function(){
     $.get( "monApplicationAjax.php?action=searchVoyage", function(data) {
         $( "#mainContent" ).html( data );
     });
+
+    $.get( "monApplicationAjax.php?action=banner", function(banner) {
+        $( "#statusBar" ).html( banner );
+    });
 });
 
 $(".logout").click(function(){
     $.get( "monApplicationAjax.php?action=logout", function(data) {
         $( "#mainContent" ).html( data );
+    });
+
+    $.get( "monApplicationAjax.php?action=banner", function(banner) {
+        $( "#statusBar" ).html( banner );
+    });
+});
+
+$(".register").click(function(){
+    $.get( "monApplicationAjax.php?action=register", function(data) {
+        $( "#mainContent" ).html( data );
+    });
+
+    $.get( "monApplicationAjax.php?action=banner", function(banner) {
+        $( "#statusBar" ).html( banner );
+    });
+});
+
+$(".login").click(function(){
+    $.get( "monApplicationAjax.php?action=login", function(data) {
+        $( "#mainContent" ).html( data );
+    });
+    
+    $.get( "monApplicationAjax.php?action=banner", function(banner) {
+        $( "#statusBar" ).html( banner );
     });
 });
 </script>

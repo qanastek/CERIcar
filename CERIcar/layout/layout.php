@@ -27,7 +27,7 @@
 
   <body>
 
-    <header class="pb-3">
+    <header class="pb-3" id="header">
       <?php include($context->getViewport("header")); ?>
     </header>
 

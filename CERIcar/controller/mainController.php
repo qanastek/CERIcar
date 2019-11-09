@@ -128,8 +128,88 @@ class mainController
 	 * Controller de la banner
 	 */
 	public static function banner($request,$context) {
-		// $context->notification = "Test";
-		// $context->notification_status = "warning";
+		return context::SUCCESS;
+	}
+
+	/**
+	 * Controller du header
+	 */
+	public static function header($request,$context) {
+		return context::SUCCESS;
+	}
+
+	/**
+	 * Controller de la connection
+	 */
+	public static function login($request,$context) {
+		return context::SUCCESS;
+	}
+
+	/**
+	 * Controller de la proposition de voyage par un conducteur
+	 */
+	public static function offerSeats($request,$context) {
+		return context::SUCCESS;
+	}
+
+	/**
+	 * Controller des profiles
+	 */
+	public static function profile($request,$context) {
+
+		$context->user = utilisateurTable::getUserById($_SESSION["user_id"]);
+		return context::SUCCESS;
+	}
+
+	/**
+	 * Controller pour le processus de vérification pour la connection
+	 */
+	public static function loginProcess($request,$context) {
+
+		if (isset($_POST["identifier"]) && isset($_POST["password"])) {
+
+			$identifier = $_POST["identifier"];
+			$password = $_POST["password"];
+
+			$user = utilisateurTable::getUserByLoginAndPass($identifier, $password);
+			$context->user = $user;
+		
+			if ($user) {
+				$context->setSessionAttribute('user_id', $user->id);
+				$context->setSessionAttribute('user_login', $user->identifiant);
+				return context::SUCCESS;
+			} else {
+				$_SESSION["notification"] = "Bad identifier or password";
+				$_SESSION["notification_status"] = "warning";
+				return context::ERROR;
+			}
+
+		} else {
+			$_SESSION["notification"] = "No identifier or password";
+			$_SESSION["notification_status"] = "warning";
+			return context::ERROR;
+		}
+	}
+	/**
+	 * Controller pour la déconnection
+	 */
+	public static function logout($request,$context) {
+		
+		if (isset($_SESSION["user_id"]) && isset($_SESSION["user_login"])) {
+			
+			unset($_SESSION["notification"]);
+			unset($_SESSION["notification_status"]);
+
+			unset($_SESSION["user_id"]);
+			unset($_SESSION["user_login"]);
+
+			return context::SUCCESS;
+
+		} else {
+			$_SESSION["notification"] = "Currently not connected !";
+			$_SESSION["notification_status"] = "warning";
+			return context::ERROR;
+		}
 
 		return context::SUCCESS;
 	}

@@ -11,16 +11,22 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" class="searchVoyage">Rechercher</a>
+                    <a class="nav-link searchVoyage">Rechercher</a>
                 </li>
 
-                <?php if($context->getSessionAttribute('user_id')): ?>
+                <?php if(isset($_SESSION["user_id"])): ?>
                 <li class="nav-item">
-                    <a class="nav-link" class="logout">Deconnection</a>
+                    <a class="nav-link offerSeats">Proposer un voyage</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link profile"><?php echo $context->getSessionAttribute('user_login'); ?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link logout">Deconnection</a>
                 </li>
                 <?php endif; ?>
-
-                <?php if(!$context->getSessionAttribute('user_id')): ?>
+                
+                <?php if(!isset($_SESSION["user_id"])): ?>
                 <li class="nav-item">
                     <a class="nav-link register">Inscription</a>
                 </li>
@@ -46,18 +52,18 @@ $(".home").click(function(){
     });
 });
 
-$(".searchVoyage").click(function(){
-    $.get( "monApplicationAjax.php?action=searchVoyage", function(data) {
+$(".profile").click(function(){
+    $.get( "monApplicationAjax.php?action=profile", function(data) {
         $( "#mainContent" ).html( data );
-    });
-
-    $.get( "monApplicationAjax.php?action=banner", function(banner) {
-        $( "#statusBar" ).html( banner );
+        
+        $.get( "monApplicationAjax.php?action=banner", function(banner) {
+            $( "#statusBar" ).html( banner );
+        });
     });
 });
 
-$(".logout").click(function(){
-    $.get( "monApplicationAjax.php?action=logout", function(data) {
+$(".searchVoyage").click(function(){
+    $.get( "monApplicationAjax.php?action=searchVoyage", function(data) {
         $( "#mainContent" ).html( data );
     });
 
@@ -78,9 +84,34 @@ $(".register").click(function(){
 
 $(".login").click(function(){
     $.get( "monApplicationAjax.php?action=login", function(data) {
+
+        $( "#mainContent" ).html( data );
+
+        $.get( "monApplicationAjax.php?action=banner", function(banner) {
+            $( "#statusBar" ).html( banner );
+        });
+    });
+});
+
+$(".logout").click(function(){
+    $.get( "monApplicationAjax.php?action=logout", function(data) {
+
+        $.get( "monApplicationAjax.php?action=banner", function(banner) {
+            $( "#statusBar" ).html( banner );     
+
+            $.get( "monApplicationAjax.php?action=index", function(index) {
+                $( "#mainContent" ).html(index);
+            });
+        });
+
+    });
+});
+
+$(".offerSeats").click(function(){
+    $.get( "monApplicationAjax.php?action=offerSeats", function(data) {
         $( "#mainContent" ).html( data );
     });
-    
+
     $.get( "monApplicationAjax.php?action=banner", function(banner) {
         $( "#statusBar" ).html( banner );
     });

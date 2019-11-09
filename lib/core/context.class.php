@@ -172,6 +172,38 @@ class context
 		unset($_SESSION['notification_status']);
 		return $notification_status;
 	}
+
+	/**
+	 * Get the URL of the image
+	 * @return void String The link to the image
+	 */
+	public function getImages($nameApp, $img) {
+		return $nameApp . "/assets/img/" . $img;
+	}
+
+	/**
+	 * Calcule la durée d'un trajet
+	 * @return void String La durée du trajet
+	 */
+	public function getDureeTrajet($heureDepart, $distance) {
+		$speed = 1;
+		$duration = $speed * $distance;
+
+		$hour = $heureDepart + round($duration / 60);
+		$min = round($duration % 60);
+
+		$rslt = $hour . ":" . $min;
+
+		return $rslt;
+	}
+
+	/**
+	 * Calcule le nombre de places restantes
+	 * @return void String Le nombre de places restantes
+	 */
+	public function getNbrPlacesRestante($idVoyage) {
+		return voyageTable::getPlacesRestantes($idVoyage);
+	}
     
 	/**
 	 * Récupère une variable dans $data

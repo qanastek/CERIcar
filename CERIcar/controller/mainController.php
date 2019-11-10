@@ -162,6 +162,18 @@ class mainController
 	}
 
 	/**
+	 * Controller des réservations de voyage
+	 */
+	public static function book($request,$context) {
+
+		if (isset($_POST["voyageId"])) {
+			$reservation = reservationTable::addReservationByVoyage($_POST["voyageId"]);
+		}
+
+		return context::SUCCESS;
+	}
+
+	/**
 	 * Controller pour le processus de vérification pour la connection
 	 */
 	public static function loginProcess($request,$context) {

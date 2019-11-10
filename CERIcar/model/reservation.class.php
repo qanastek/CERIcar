@@ -27,6 +27,8 @@ class reservation {
 	 */ 
 	public $voyageur;
 
+	
+
 }
 
 ?>

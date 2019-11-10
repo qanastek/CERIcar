@@ -22,6 +22,21 @@ class voyageTable {
 	}
 
 	/**
+	 * Get a voyage by id
+	 * @param Integer $id
+	 * @return Voyage[]
+	 */
+  	public static function getVoyageById($id) 
+	{
+		$em = dbconnection::getInstance()->getEntityManager();
+
+		$voyageRepository = $em->getRepository('voyage');
+		$voyage = $voyageRepository->findOneBy(array('id' => $id));
+
+		return $voyage; 
+	}
+
+	/**
 	 * Calcule le nombre de place restantes
 	 *
 	 * @param Integer $idVoyage

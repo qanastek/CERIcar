@@ -35,6 +35,8 @@
             <p>
                 Il reste <?php echo $context->getNbrPlacesRestante($voyage->id); ?> places.
             </p>
+            
+            <button class="book" value="<?php echo $voyage->id; ?>">Réserver</button>
         </div>
     </div>
 
@@ -43,3 +45,26 @@
 <?php endforeach; ?>
 
 </div>
+
+<script>
+$(".book").click(function(){
+
+    var voyageId = $(".book").val();
+
+    $.ajax({
+        url: "monApplicationAjax.php?action=book",
+        type: "post",
+        data: {
+            "voyageId": voyageId
+        },
+        success: function(response) {
+            $.get( "monApplicationAjax.php?action=book", function(data) {
+                $( "#mainContent" ).html( data );
+            });
+        },
+        error: function(xhr) {
+            console.log("fail");
+        }
+    });
+});
+</script>

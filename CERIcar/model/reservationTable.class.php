@@ -18,6 +18,21 @@ class reservationTable {
 		return $reservation; 
 	}
 
+  	public static function addReservationByVoyage($voyage)
+	{
+		$em = dbconnection::getInstance()->getEntityManager();
+
+		$userId = $_SESSION["user_id"];
+
+		$reservation = new reservation();
+		
+		$reservation->voyage = voyageTable::getVoyageById(intval($voyage));
+		$reservation->voyageur = utilisateurTable::getUserById(intval($userId));
+
+		$em->persist($reservation);
+		$em->flush();
+	}
+
 }
 
 ?>

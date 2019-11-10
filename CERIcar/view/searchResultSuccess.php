@@ -49,7 +49,7 @@
 <script>
 $(".book").click(function(){
 
-    var voyageId = $(".book").val();
+    var voyageId = $(this).val();
 
     $.ajax({
         url: "monApplicationAjax.php?action=book",

@@ -59,6 +59,32 @@ class voyageTable {
 		return $nbrPlacesTotal - $nbrReservation;
 	}
 
+	
+	public static function addVoyage(
+		$cityFrom,
+		$cityTo,
+		$fromHour,
+		$price,
+		$seats,
+		$contraints
+	) {
+		$em = dbconnection::getInstance()->getEntityManager();
+
+		$userId = $_SESSION["user_id"];
+
+		$voyage = new voyage();
+
+		$voyage->conducteur = utilisateurTable::getUserById(intval($userId));
+		$voyage->trajet = trajetTable::getTrajet($cityFrom,$cityTo);
+		$voyage->tarif = $price;
+		$voyage->nbPlace = $seats;
+		$voyage->heureDepart = $fromHour;
+		$voyage->contraintes = $contraints;
+
+		$em->persist($voyage);
+		$em->flush();
+	}
+
 }
 
 ?>

@@ -149,6 +149,30 @@ class mainController
 	 * Controller de la proposition de voyage par un conducteur
 	 */
 	public static function offerSeats($request,$context) {
+
+		if (isset($_POST["cityFrom"]) &&
+			isset($_POST["cityTo"]) &&
+
+			isset($_POST["fromHour"]) &&
+
+			isset($_POST["price"]) &&
+			isset($_POST["seats"]) &&
+
+			isset($_POST["contraints"])
+		) {
+
+			// Ajout des voyages dans la DB
+			voyageTable::addVoyage(
+				$_POST["cityFrom"],
+				$_POST["cityTo"],
+				$_POST["fromHour"],
+				$_POST["price"],
+				$_POST["seats"],
+				$_POST["contraints"]
+			);
+
+		}
+
 		return context::SUCCESS;
 	}
 

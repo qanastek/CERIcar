@@ -16,27 +16,27 @@ class utilisateur {
 	public $id;
 
 	/**
-	 * @Column(type="string", length=45)
+	 * @Column(type="string")
 	 */ 
 	public $identifiant;
 		
 	/**
-	 * @Column(type="string", length=45)
+	 * @Column(type="string")
 	 */ 
 	public $pass;
 
 	/**
-	 * @Column(type="string", length=45)
+	 * @Column(type="string")
 	 */ 
 	public $nom;
 
 	/**
-	 * @Column(type="string", length=45)
+	 * @Column(type="string")
 	 */ 
 	public $prenom;
 
 	/**
-	 * @Column(type="string", length=200)
+	 * @Column(type="string")
 	 */ 
 	public $avatar;
 

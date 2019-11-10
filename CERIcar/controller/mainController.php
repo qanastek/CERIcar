@@ -146,6 +146,41 @@ class mainController
 	}
 
 	/**
+	 * Controller de l'inscription
+	 */
+	public static function register($request,$context) {
+		return context::SUCCESS;
+	}
+
+	/**
+	 * Controller du processus d'inscription
+	 */
+	public static function registerProcess($request,$context) {
+
+		if (isset($_POST["username"]) &&
+			isset($_POST["name"]) &&
+			isset($_POST["surname"]) &&
+			isset($_POST["image"]) &&
+			isset($_POST["password"])
+		) {
+			// Ajout d'un utilisateur dans la DB
+			utilisateurTable::addUser(
+				$_POST["username"],
+
+				$_POST["name"],
+				$_POST["surname"],
+
+				$_POST["image"],
+				sha1($_POST["password"])
+			);
+
+			return context::SUCCESS;
+		}
+
+	}
+
+
+	/**
 	 * Controller de la proposition de voyage par un conducteur
 	 */
 	public static function offerSeats($request,$context) {
@@ -165,15 +200,20 @@ class mainController
 			voyageTable::addVoyage(
 				$_POST["cityFrom"],
 				$_POST["cityTo"],
+
 				$_POST["fromHour"],
+
 				$_POST["price"],
 				$_POST["seats"],
+
 				$_POST["contraints"]
 			);
 
-		}
+			return context::SUCCESS;
 
-		return context::SUCCESS;
+		} else {
+			return context::ERROR;
+		}
 	}
 
 	/**

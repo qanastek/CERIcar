@@ -10,7 +10,7 @@ class utilisateurTable {
 		$em = dbconnection::getInstance()->getEntityManager() ;
 
 		$userRepository = $em->getRepository('utilisateur');
-		$user = $userRepository->findOneBy(array('identifiant' => $login, 'pass' => $pass));	
+		$user = $userRepository->findOneBy(array('identifiant' => $login, 'pass' => sha1($pass)));	
 		
 		if ($user == false) {
 			echo 'Erreur sql';
@@ -29,6 +29,27 @@ class utilisateurTable {
 			echo 'Erreur sql';
 		}
 		return $user; 
+	}
+
+	public static function addUser(
+		$username,
+		$name,
+		$surname,
+		$image,
+		$password
+	) {
+		$em = dbconnection::getInstance()->getEntityManager();
+
+		$utilisateur = new utilisateur();
+
+		$utilisateur->identifiant = $username;
+		$utilisateur->pass = $password;
+		$utilisateur->nom = $name;
+		$utilisateur->prenom = $surname;
+		$utilisateur->avatar = $image;
+
+		$em->persist($utilisateur);
+		$em->flush();
 	}
 
 }

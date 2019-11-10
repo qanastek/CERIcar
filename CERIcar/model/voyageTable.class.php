@@ -58,7 +58,6 @@ class voyageTable {
 
 		return $nbrPlacesTotal - $nbrReservation;
 	}
-
 	
 	public static function addVoyage(
 		$cityFrom,

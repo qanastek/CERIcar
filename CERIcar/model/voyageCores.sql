@@ -7,7 +7,7 @@ $$
 	DECLARE
 		my_record record;
         my_dep record;
-        heure numeric;
+        heure float;
 
 	BEGIN
         FOR my_dep in select *
@@ -24,7 +24,7 @@ $$
                 IF my_dep.arrivee = my_record.depart Then
 
                     
-                    heure = my_dep.heuredepart + (trunc(my_dep.distance/60)+1);
+                    heure = my_dep.heuredepart + (my_dep.distance / 60);
 
                     if heure <= my_record.heuredepart Then
 

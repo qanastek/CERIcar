@@ -209,11 +209,9 @@ class mainController
 				$_POST["contraints"]
 			);
 
-			return context::SUCCESS;
-
-		} else {
-			return context::ERROR;
 		}
+
+		return context::SUCCESS;
 	}
 
 	/**

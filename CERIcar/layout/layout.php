@@ -27,13 +27,13 @@
 
   <body>
 
-    <header class="pb-3" id="header">
+    <header id="header">
       <?php include($context->getViewport("header")); ?>
     </header>
 
     <main>
 
-      <div id="statusBar">
+      <div id="statusBar" class="pb-3">
         <?php include($context->getViewport("statusBar")); ?>
       </div>
 

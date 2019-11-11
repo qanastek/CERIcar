@@ -14,7 +14,7 @@
                 autocomplete=off
                 id="from"
                 placeholder="Ville de départ..."
-                value="<?php echo (isset($_SESSION["from"])) ? $_SESSION["from"] : "Ville de départ"; ?>"
+                value="<?php echo (isset($_SESSION["from"])) ? $_SESSION["from"] : ""; ?>"
             >
         </div>
 

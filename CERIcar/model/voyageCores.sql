@@ -39,4 +39,4 @@ $$
 $$
 LANGUAGE plpgsql;
 
-select voyageCOres('Paris','Nice');
+select voyageCores('Paris','Nice');

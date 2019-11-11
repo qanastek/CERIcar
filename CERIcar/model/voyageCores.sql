@@ -1,4 +1,4 @@
-DROP FUNCTION IF EXISTS voyageCores(depart varchar, arrivee varchar);
+DROP FUNCTION IF EXISTS voyageCores(d_depart varchar, a_arrivee varchar);
 
 CREATE OR REPLACE FUNCTION voyageCores(depart varchar, arrivee varchar)
 RETURNS VOID

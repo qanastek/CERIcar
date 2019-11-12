@@ -8,19 +8,6 @@ class context
 	 */
 	private $data;
 
-	/**
-	 * Tableau associatif de la structure du layout
-	 *
-	 * @var Array
-	 */
-	private $viewport = array(
-		"header" => "header",
-		"statusBar" => "banner",
-		"left" => null,
-		"right" => null,
-		"footer" => "footer"
-	);
-
     const SUCCESS = "Success";
     const ERROR = "Error";
     const NONE = "None";
@@ -61,30 +48,6 @@ class context
 	public function init($name)
 	{
        $this->name = $name;       
-	}
-
-	/**
-	 * Renvoie la view correspondant à la zone demandé
-	 *
-	 * @param String $location Partie du viewport que l'ont souhaite récupéré
-	 * @return String
-	 */
-	public function getViewport($location)
-	{
-		return "CERIcar" . "/view/" . $this->viewport[$location] . "Success.php";
-	}
-
-	
-	/**
-	 * Set une zone à une view spécifique 
-	 *
-	 * @param String $location Partie du viewport dont ont souhaite changé la vue
-	 * @param String $view La vue à assigner
-	 * @return void
-	 */
-	public function setViewport($location, $view)
-	{
-		$this->viewport[$location] = $view;
 	}
 	
 	public function getLayout()

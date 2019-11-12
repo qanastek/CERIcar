@@ -28,13 +28,13 @@
   <body>
 
     <header id="header">
-      <?php include($context->getViewport("header")); ?>
+      <?php include($nameApp . "/view/headerSuccess.php"); ?>
     </header>
 
     <main>
 
       <div id="statusBar" class="pb-3">
-        <?php include($context->getViewport("statusBar")); ?>
+        <?php include($nameApp . "/view/bannerSuccess.php"); ?>
       </div>
 
       <div id="mainContent" style="min-height: 80vh;">
@@ -44,7 +44,7 @@
     </main>
 
     <footer class="pt-3">
-      <?php include($context->getViewport("footer")); ?>
+      <?php include($nameApp . "/view/footerSuccess.php"); ?>
     </footer>
       
   </body>

@@ -7,27 +7,18 @@ RETURNS TABLE (
 AS
 $$
 	DECLARE
-		my_record record;
-        my_dep record;
-        heure float;
-        text varchar(500);
-
 	BEGIN
-       select *
-         into variable
-         from voyage
-        where condition
-
+        voyage_id:='';
+        voyage_id:=voyage_id||voyageCoresRecursif(voyage_id,d_depart,a_arrivee,0);
+        for 
 	END;
 $$
 LANGUAGE plpgsql;
 
-DROP FUNCTION IF EXISTS voyageCoresRecursif(table varchar(500), a_arrivee varchar,distance integer);
+DROP FUNCTION IF EXISTS voyageCoresRecursif(table varchar(500),d_depart varchar, a_arrivee varchar,distance integer);
 
-CREATE OR REPLACE FUNCTION voyageCoresRecursif(table varchar(500), a_arrivee varchar,distance integer)
-RETURNS TABLE (
-    voyage_id varchar(500)
-)
+CREATE OR REPLACE FUNCTION voyageCoresRecursif(table varchar(500),d_depart varchar, a_arrivee varchar,distance integer)
+RETURNS varchar(500)
 AS
 $$
 	DECLARE

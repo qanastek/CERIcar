@@ -1,6 +1,6 @@
 <div class="centeredSearch">
 
-<?php include($nameApp . "/view/components/fromToBar.php"); ?>
+<?php include($nameApp . "/view/fromToBar.php"); ?>
 
 <p>
     <?php echo count($context->voyages); ?> voyages disponible
@@ -36,7 +36,9 @@
                 Il reste <?php echo $context->getNbrPlacesRestante($voyage->id); ?> places.
             </p>
             
-            <button class="book" value="<?php echo $voyage->id; ?>">Réserver</button>
+            <?php if(isset($_SESSION['user_id'])): ?>
+                <button class="book" value="<?php echo $voyage->id; ?>">Réserver</button>
+            <?php endif; ?>
         </div>
     </div>
 

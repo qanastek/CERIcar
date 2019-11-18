@@ -108,7 +108,8 @@ class mainController
 			$context->voyages = voyageTable::getVoyagesByTrajet($trajet->id);
 
 			// Vérifier que l'ont a bien des voyages en retour
-			if (count($context->voyages) > 0) {		
+			if (count($context->voyages) > 0) {
+				$context->nbVoyagesDisponible = voyageTable::NbVoyagesTrajet($trajet->id);
 				return context::SUCCESS;
 			} else {
 				$_SESSION["notification"] = "No result";

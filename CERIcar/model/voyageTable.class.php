@@ -58,6 +58,25 @@ class voyageTable {
 
 		return $nbrPlacesTotal - $nbrReservation;
 	}
+
+	/**
+	 * Ne fonctionnent pas
+	 */
+  	public static function NbVoyagesTrajet($idTrajet)
+	{
+		$em = dbconnection::getInstance()->getEntityManager();
+
+		$queryBuilder = $em->createQueryBuilder();
+
+		$queryBuilder->select('NbVoyagesTrajet(?)')
+		->setParameter(1, $idTrajet);
+		
+		$rslt = $queryBuilder->getQuery()->execute();
+
+		echo $rslt;
+
+		return $rslt;
+	}
 	
 	public static function addVoyage(
 		$cityFrom,

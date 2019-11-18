@@ -3,7 +3,7 @@
 <?php include($nameApp . "/view/fromToBar.php"); ?>
 
 <p>
-    <?php echo count($context->voyages); ?> voyages disponible
+    <?php echo $context->nbVoyagesDisponible; ?> voyages disponible
 </p>
 
 <?php foreach($context->voyages as $voyage): ?>

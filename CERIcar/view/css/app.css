@@ -110,3 +110,10 @@ a, u {
     border-color: rgb(237, 237, 237);
     border-image: initial;
 }
+
+.title-login {
+    text-align: center;
+    font-size: 1.25em;
+    margin: 2% 0px;
+    font-weight: 500;
+}

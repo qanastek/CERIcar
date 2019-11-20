@@ -1,7 +1,6 @@
-C'est l'action par défaut ! 
+<img src="<?php echo $context->getImages($nameApp, 'index.jpg'); ?>" style="width: 100%; height: 75vh; overflow: hidden; object-fit: cover;">
 
-<p class="testClass">TEST</p>
-<button class="testBtn">TESTING</button>
+C'est l'action par défaut ! 
 
 <a role="button" class="btn btn-primary helloWorld">helloWorld</a>
 

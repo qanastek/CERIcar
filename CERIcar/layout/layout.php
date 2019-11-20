@@ -8,7 +8,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
       
     <!-- Font awsome -->
@@ -33,7 +33,7 @@
 
     <main>
 
-      <div id="statusBar" class="pb-3">
+      <div id="statusBar">
         <?php include($nameApp . "/view/bannerSuccess.php"); ?>
       </div>
 
@@ -43,7 +43,7 @@
 
     </main>
 
-    <footer class="pt-3">
+    <footer>
       <?php include($nameApp . "/view/footerSuccess.php"); ?>
     </footer>
       

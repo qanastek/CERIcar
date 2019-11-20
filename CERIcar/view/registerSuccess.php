@@ -1,23 +1,29 @@
 <div>
 
+    <h1>Inscrivez-vous</h1>
+
+    <div class="form-row">
+
+        <div class="form-group col-md-6 mb-3">
+            <label for="surname">Prénom</label>
+            <input type="text" class="form-control" id="surname" placeholder="Prénom">
+        </div>
+
+        <div class="form-group col-md-6 mb-3">
+            <label for="name">Nom</label>
+            <input type="text" class="form-control" id="name" placeholder="Nom">
+        </div>
+
+    </div>
+    
     <div class="form-group">
-        <label for="username">Speudonyme</label>
+        <label for="username">Identifiant</label>
         <input type="text" class="form-control" id="username" placeholder="Username">
     </div>
 
     <div class="form-group">
-        <label for="name">Nom</label>
-        <input type="text" class="form-control" id="name" placeholder="Nom">
-    </div>
-
-    <div class="form-group">
-        <label for="surname">Prénom</label>
-        <input type="text" class="form-control" id="surname" placeholder="Prénom">
-    </div>
-
-    <div class="form-group">
         <label for="password">Mot de passe</label>
-        <input type="password" class="form-control" id="password" placeholder="Mot de passe">
+        <input type="password" class="form-control" id=Inscrivez-vous"password" placeholder="Mot de passe">
     </div>
 
     <div class="form-group">

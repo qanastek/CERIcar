@@ -117,3 +117,20 @@ a, u {
     margin: 2% 0px;
     font-weight: 500;
 }
+
+.navbar a {
+    color: #00AFF5 !important;
+    cursor: pointer;
+}
+
+.bg-white {
+    background-color: #ffffff!important;
+    font-weight: 700;
+}
+
+.seats {
+    background-color: #ffffff !important;
+    color: #054752;
+    font-weight: 600;
+    font-size: 1.1em;
+}

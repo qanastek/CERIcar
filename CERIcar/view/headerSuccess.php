@@ -1,6 +1,10 @@
-<nav class="navbar navbar-dark bg-light navbar-expand-lg">
+<nav class="navbar navbar-dark bg-white navbar-expand-lg">
 
-    <a class="navbar-brand home" style="color: white !important; color: #00AFF5 !important;">CERIcar</a>
+    <!-- <a class="navbar-brand home">CERIcar</!--> 
+    
+    <a class="navbar-brand home">
+        <img src="<?php echo $context->getImages($nameApp, 'logo_cericar.PNG'); ?>" style="width: 75%;">
+    </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -11,27 +15,36 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link searchVoyage" style="color: #00AFF5 !important;">Rechercher</a>
+                    <a class="nav-link searchVoyage">
+                        <i class="fas fa-search"></i>
+                        Rechercher
+                    </a>
                 </li>
 
                 <?php if(isset($_SESSION["user_id"])): ?>
                 <li class="nav-item">
-                    <a class="nav-link offerSeats" style="color: #00AFF5 !important;">Proposer un voyage</a>
+                    <a class="nav-link offerSeats">
+                        <i class="fas fa-plus-circle"></i>
+                        Proposer un voyage
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link profile" style="color: #00AFF5 !important;"><?php echo $context->getSessionAttribute('user_login'); ?></a>
+                    <a class="nav-link profile">
+                        <i class="far fa-user-circle"></i>
+                        <?php echo $context->getSessionAttribute('user_login'); ?>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link logout" style="color: #00AFF5 !important;">Deconnection</a>
+                    <a class="nav-link logout">Deconnection</a>
                 </li>
                 <?php endif; ?>
                 
                 <?php if(!isset($_SESSION["user_id"])): ?>
                 <li class="nav-item">
-                    <a class="nav-link register" style="color: #00AFF5 !important;">Inscription</a>
+                    <a class="nav-link register">Inscription</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link login" style="color: #00AFF5 !important;">Connexion</a>
+                    <a class="nav-link login">Connexion</a>
                 </li>
                 <?php endif; ?>
 

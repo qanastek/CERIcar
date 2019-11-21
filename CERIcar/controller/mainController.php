@@ -107,7 +107,7 @@ class mainController
 		
 			$context->voyages = voyageTable::getVoyagesByTrajet($trajet->id);
 			
-			$context->nbVoyagesDisponible = voyageTable::NbVoyagesTrajet($trajet->id);
+			// $context->nbVoyagesDisponible = voyageTable::NbVoyagesTrajet($trajet->id);
 
 			// Vérifier que l'ont a bien des voyages en retour
 			if (count($context->voyages) > 0) {
@@ -222,6 +222,9 @@ class mainController
 	public static function profile($request,$context) {
 
 		$context->user = utilisateurTable::getUserById($_SESSION["user_id"]);
+
+		$context->allReservation = reservationTable::getReservationsByUser($context->user);
+		
 		return context::SUCCESS;
 	}
 

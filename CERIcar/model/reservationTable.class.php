@@ -18,6 +18,27 @@ class reservationTable {
 		return $reservation; 
 	}
 
+	public static function getReservationsByUser($User) {
+
+		$em = dbconnection::getInstance()->getEntityManager();
+
+		$reservationRepository = $em->getRepository('reservation');
+		$reservation = $reservationRepository->findBy(
+			array('voyageur' => $User), 
+			array('id' => 'DESC')
+		);
+
+		// echo $User->identifiant;
+		// echo $reservation->id;
+
+		if ($reservation == false) {
+			echo 'Erreur sql';
+		}
+		
+		return $reservation; 
+
+	}
+
   	public static function addReservationByVoyage($voyage)
 	{
 		$em = dbconnection::getInstance()->getEntityManager();

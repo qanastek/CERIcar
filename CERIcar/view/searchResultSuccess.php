@@ -2,9 +2,9 @@
 
 <?php include($nameApp . "/view/fromToBar.php"); ?>
 
-<p>
+<!-- <p>
     <?php echo $context->nbVoyagesDisponible; ?> voyages disponible
-</p>
+</p> -->
 
 <?php foreach($context->voyages as $voyage): ?>
 

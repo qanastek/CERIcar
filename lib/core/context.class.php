@@ -155,7 +155,7 @@ class context
 		$hour = $heureDepart + round($duration / 60);
 		$min = round($duration % 60);
 
-		$rslt = $hour . ":" . $min;
+		$rslt = $hour % 24 . ":" . $min;
 
 		return $rslt;
 	}

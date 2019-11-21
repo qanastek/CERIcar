@@ -1,4 +1,22 @@
-<img src="<?php echo $context->getImages($nameApp, 'index.jpg'); ?>" style="width: 100%; height: 75vh; overflow: hidden; object-fit: cover;">
+<div style="position:relative;">
+    <div 
+        style="
+            background-image: url(<?php echo $context->getImages($nameApp, 'index.jpg'); ?>);
+            width: 100%;
+            height: 75vh;
+            background-size: cover;
+            background-position: center;
+        "
+    >
+        <div class="text-center pb-5" style="color: #ffffff; position: absolute; width: 100%; bottom: 0; z-index: 2; background: linear-gradient(0deg, rgba(0, 0, 0, .4) 72%, rgba(0, 0, 0, .2) 85%, rgba(0, 0, 0, 0) 100%);">
+            <p style="font-size: 3em; font-weight: 700; margin: 0%;">Et vous, qui allez-vous retrouver ?</p>
+            <p style="font-size: 1.25em; font-weight: 600;">Bus ou covoiturage : choisissez le trajet qui vous convient le mieux</p>
+            <a class="searchButton" style="color: #ffffff;" role="button">
+                Rechercher un trajet
+            </a>
+        </div>
+    </div>
+</div>
 
 C'est l'action par défaut ! 
 
@@ -30,6 +48,12 @@ $(".superTest").click(function(){
 });
 
 $(".searchVoyage").click(function(){
+    $.get( "monApplicationAjax.php?action=searchVoyage", function(data) {
+        $( "#mainContent" ).html( data );
+    });
+});
+
+$(".searchButton").click(function(){
     $.get( "monApplicationAjax.php?action=searchVoyage", function(data) {
         $( "#mainContent" ).html( data );
     });

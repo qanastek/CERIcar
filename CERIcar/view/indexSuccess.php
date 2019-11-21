@@ -1,9 +1,9 @@
-<div style="position:relative;">
+<div style="position: relative;">
     <div 
+        class="header-img" 
         style="
             background-image: url(<?php echo $context->getImages($nameApp, 'index.jpg'); ?>);
             width: 100%;
-            height: 75vh;
             background-size: cover;
             background-position: center;
         "
@@ -27,9 +27,9 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row motto">
     <div class="col-md-6" style="padding: 0px;">
-        <img src="<?php echo $context->getImages($nameApp, 'pic1.jpg'); ?>" style="width: 100%; height: 70vh; overflow: hidden; object-fit: cover;">
+        <img src="<?php echo $context->getImages($nameApp, 'pic1.jpg'); ?>" style="width: 100%; overflow: hidden; object-fit: cover;">
     </div>
     <div class="col-md-6" style="background-color: rgb(245, 246, 247);">
         <div style="max-width: 60%; text-align: center; margin-left: auto; margin-right: auto; margin-top: 25%; margin-bottom: auto;">
@@ -39,7 +39,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row motto">
     <div class="col-md-6" style="background-color: rgb(245, 246, 247);">
         <div style="max-width: 60%; text-align: center; margin-left: auto; margin-right: auto; margin-top: 25%; margin-bottom: auto;">
             <h2 style="color: #21314D; font-size: 32px; font-weight: 700;">Communauté</h2>
@@ -47,13 +47,13 @@
         </div>
     </div>
     <div class="col-md-6" style="padding: 0px;">
-        <img src="<?php echo $context->getImages($nameApp, 'pic2.jpg'); ?>" style="width: 100%; height: 70vh; overflow: hidden; object-fit: cover;">
+        <img src="<?php echo $context->getImages($nameApp, 'pic2.jpg'); ?>" style="width: 100%; overflow: hidden; object-fit: cover;">
     </div>
 </div>
 
-<div class="row">
+<div class="row motto">
     <div class="col-md-6" style="padding: 0px;">
-        <img src="<?php echo $context->getImages($nameApp, 'pic3.jpg'); ?>" style="width: 100%; height: 70vh; overflow: hidden; object-fit: cover;">
+        <img src="<?php echo $context->getImages($nameApp, 'pic3.jpg'); ?>" style="width: 100%; overflow: hidden; object-fit: cover;">
     </div>
     <div class="col-md-6" style="background-color: rgb(245, 246, 247);">
         <div style="max-width: 60%; text-align: center; margin-left: auto; margin-right: auto; margin-top: 25%; margin-bottom: auto;">

@@ -134,3 +134,27 @@ a, u {
     font-weight: 600;
     font-size: 1.1em;
 }
+
+@media (orientation: landscape) {
+    .motto img {
+        height: 70vh; 
+    }
+}
+
+@media (orientation: portrait) {
+    .motto img {
+        height: 25vh; 
+    }
+}
+
+@media (orientation: landscape) {
+    .header-img {
+        height: 75vh; 
+    }
+}
+
+@media (orientation: portrait) {
+    .header-img {
+        height: 45vh; 
+    }
+}

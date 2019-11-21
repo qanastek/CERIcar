@@ -2,8 +2,8 @@
 
     <h3 class="pb-3">Publier une annonce</h3>
 
-    <div class="card mb-3 seats">
-        <div class="card-header">
+    <div class="card mb-3">
+        <div class="card-header seats">
             Itinéraire
         </div>
 
@@ -20,8 +20,8 @@
         </div>
     </div>
     
-    <div class="card mb-3 seats">
-        <div class="card-header">
+    <div class="card mb-3">
+        <div class="card-header seats">
             Horaire
         </div>
 
@@ -58,8 +58,8 @@
         </div>
     </div>
 
-    <div class="card mb-3 seats">
-        <div class="card-header">
+    <div class="card mb-3">
+        <div class="card-header seats">
             Informations du trajet
         </div>
 
@@ -76,8 +76,8 @@
         </div>
     </div>
 
-    <div class="card mb-3 seats">
-        <div class="card-header">
+    <div class="card mb-3">
+        <div class="card-header seats">
             Contraintes
         </div>
 

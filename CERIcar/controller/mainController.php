@@ -111,6 +111,8 @@ class mainController
 
 			// Vérifier que l'ont a bien des voyages en retour
 			if (count($context->voyages) > 0) {
+				$_SESSION["notification"] = "Trouver !";
+				$_SESSION["notification_status"] = "success";
 				return context::SUCCESS;
 			} else {
 				$_SESSION["notification"] = "No result";
@@ -224,7 +226,7 @@ class mainController
 		$context->user = utilisateurTable::getUserById($_SESSION["user_id"]);
 
 		$context->allReservation = reservationTable::getReservationsByUser($context->user);
-		
+
 		return context::SUCCESS;
 	}
 

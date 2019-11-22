@@ -37,6 +37,42 @@ class voyageTable {
 	}
 
 	/**
+	 * Get all the correspondances for a spefic trajet
+	 * @param Integer $id
+	 * @return Voyage[]
+	 */
+  	public static function getCorrespondances($trajet) 
+	{
+		$em = dbconnection::getInstance()->getEntityManager();
+
+
+		$sql = "SELECT voyagecores from voyageCores('" . $trajet->depart . "','" . $trajet->arrivee . "')";
+		$stmt = $em->getConnection()->prepare($sql);
+		$stmt->execute();
+		$rslt = $stmt->fetchAll();
+
+		$array = array();
+
+		foreach ($rslt as $item) {
+
+			$splited = explode("|", (string) $item["voyagecores"]);
+
+			$subarray = array();
+
+			foreach ($splited as $id) {
+				array_push(
+					$subarray,
+					voyageTable::getVoyageById((int) $id)
+				);
+			}
+
+			array_push($array,$subarray);
+		}
+
+		return $array;
+	}
+
+	/**
 	 * Calcule le nombre de place restantes
 	 *
 	 * @param Integer $idVoyage

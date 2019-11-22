@@ -46,6 +46,17 @@
 
 <?php endforeach; ?>
 
+<?php foreach($context->voyagesCorrespondance as $correspance): ?>
+
+    <?php foreach($correspance as $voyage): ?>
+
+        <!-- <p><?php echo $voyage->trajet->depart ?></p> -->
+        <!-- <p><?php print_r($voyage); ?></p> -->
+
+    <?php endforeach; ?>
+
+<?php endforeach; ?>
+
 </div>
 
 <script>

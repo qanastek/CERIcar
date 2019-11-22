@@ -297,7 +297,7 @@ class mainController
 	 */
 	public static function logout($request,$context) {
 		
-		if (isset($_SESSION["user_id"]) && isset($_SESSION["user_login"])) {
+		if (isset($_SESSION["user_id"]) || isset($_SESSION["user_login"])) {
 			
 			unset($_SESSION["notification"]);
 			unset($_SESSION["notification_status"]);
@@ -312,8 +312,6 @@ class mainController
 			$_SESSION["notification_status"] = "warning";
 			return context::ERROR;
 		}
-
-		return context::SUCCESS;
 	}
 
 }

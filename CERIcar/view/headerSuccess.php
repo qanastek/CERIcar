@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link logout">Deconnection</a>
+                    <a class="nav-link logout">Déconnexion</a>
                 </li>
                 <?php endif; ?>
                 
@@ -114,6 +114,10 @@ $(".logout").click(function(){
 
             $.get( "monApplicationAjax.php?action=index", function(index) {
                 $( "#mainContent" ).html(index);
+
+                $.get( "monApplicationAjax.php?action=header", function(header) {
+                    $( "#header" ).html(header);
+                });
             });
         });
 

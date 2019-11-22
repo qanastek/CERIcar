@@ -231,6 +231,9 @@ class mainController
 				$_POST["contraints"]
 			);
 
+		} else {	
+			$context->citiesFrom = trajetTable::getAllDepart();
+			$context->citiesTo = trajetTable::getAllArrivee();
 		}
 
 		return context::SUCCESS;

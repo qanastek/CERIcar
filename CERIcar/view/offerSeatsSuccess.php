@@ -11,12 +11,28 @@
             <div style="background-color: #EDEDED; color: #054752; padding: 3%;">
                 <div class="form-group">
                     <label for="from">D’où partez-vous ?</label>
-                    <input type="text" class="form-control" id="from" placeholder="Paris">
+                    <input type="text" list="citiesFrom" class="form-control" id="from" placeholder="Paris">
+                    
+                    <datalist id="citiesFrom">
+                        <?php foreach($context->citiesFrom as $trajet): ?>
+                            <option id="<?php echo $trajet["depart"]; ?>">
+                                <?php echo $trajet["depart"]; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </datalist>
                 </div>
 
                 <div class="form-group">
                     <label for="to">Où allez-vous ?</label>
-                    <input type="text" class="form-control" id="to" placeholder="Lyon">
+                    <input type="text" list="citiesTo" class="form-control" id="to" placeholder="Lyon">
+
+                    <datalist id="citiesTo">
+                        <?php foreach($context->citiesTo as $trajet): ?>
+                            <option id="<?php echo $trajet["arrivee"]; ?>">
+                                <?php echo $trajet["arrivee"]; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </datalist>
                 </div>
             </div>
         </div>

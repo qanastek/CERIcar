@@ -50,8 +50,7 @@
 
     <?php foreach($correspance as $voyage): ?>
 
-        <!-- <p><?php echo $voyage->trajet->depart ?></p> -->
-        <!-- <p><?php print_r($voyage); ?></p> -->
+        <p><?php echo $voyage->trajet->depart ?></p>
 
     <?php endforeach; ?>
 

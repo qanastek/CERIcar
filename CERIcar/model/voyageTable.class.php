@@ -60,15 +60,23 @@ class voyageTable {
 			$subarray = array();
 
 			foreach ($splited as $id) {
+				$voyage = voyageTable::getVoyageById((int) $id);
 				array_push(
 					$subarray,
-					voyageTable::getVoyageById((int) $id)
+					$voyage
 				);
 			}
 
 			array_push($array,$subarray);
 		}
+		// $test = array();
+		// array_push($test,"subarray");
 
+		// $test2 = array();
+		// array_push($test2,$test);
+
+		// var_dump($test2);
+		// echo $test2[0][0];
 		return $array;
 	}
 

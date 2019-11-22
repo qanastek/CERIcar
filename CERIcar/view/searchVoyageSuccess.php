@@ -13,7 +13,7 @@
   <br>
 
   <?php if($context->getSessionAttribute("from") && $context->getSessionAttribute("to")): ?>
-  <a class="searchButton" style="color: #ffffff;" role="button">
+  <a class="searchButton button-classic" style="color: #ffffff;" role="button">
     Rechercher
   </a>
   <?php endif; ?>

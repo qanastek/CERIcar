@@ -1,18 +1,17 @@
 <p class="titleSearch">D'où partez-vous exactement ?</p>
 
-<div>
+<div class="centeredSearch text-center">
     <div class="form-group">
 
-        <label for="from">Départ</label>
-
-        <div class="fieldSearchWrapper">
+        <div>
             <input 
                 type="text"
-                class="form-control from fieldSearch"
+                class="form-control from fieldSearchInput"
                 list="citiesFrom"
                 name="from"
                 autocomplete=off
                 id="from"
+                style="background-color: rgb(237, 237, 237);"
                 placeholder="Ville de départ..."
                 value="<?php echo (isset($_SESSION["from"])) ? $_SESSION["from"] : ""; ?>"
             >
@@ -29,7 +28,9 @@
     
     <br>
 
-    <button class="btn btn-primary fromSubmit">Suivant</button>
+    <a class="fromSubmit button-classic" style="color: #ffffff;" role="button">
+        Suivant
+    </a>
 </div>
 
 <script>

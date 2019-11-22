@@ -11,7 +11,7 @@
         <div class="text-center pb-5" style="color: #ffffff; position: absolute; width: 100%; bottom: 0; z-index: 2; background: linear-gradient(0deg, rgba(0, 0, 0, .4) 72%, rgba(0, 0, 0, .2) 85%, rgba(0, 0, 0, 0) 100%);">
             <p style="font-size: 3em; font-weight: 700; margin: 0%;">Et vous, qui allez-vous retrouver ?</p>
             <p style="font-size: 1.25em; font-weight: 600;">Bus ou covoiturage : choisissez le trajet qui vous convient le mieux</p>
-            <a class="searchButton" style="color: #ffffff;" role="button">
+            <a class="searchButton button-classic" style="color: #ffffff;" role="button">
                 Rechercher un trajet
             </a>
         </div>

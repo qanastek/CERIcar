@@ -48,12 +48,18 @@
 
 <?php foreach($context->voyagesCorrespondance as $correspance): ?>
 
-    <p>
-    <?php foreach($correspance as $voyage): ?>
-        <?php echo $voyage->trajet->arrivee ?>
+    <p>        
+
+    <?php echo $correspance[0]->trajet->depart ?>
+    <i class="fas fa-caret-right" aria-hidden="true"></i>
+
+    <?php for($i = 1; $i < count($correspance); $i++): ?>
+        
+        <?php echo $correspance[$i]->trajet->depart ?>
         <i class="fas fa-caret-right" aria-hidden="true"></i>
 
-    <?php endforeach; ?>
+    <?php endfor; ?>
+    <?php echo $correspance[count($correspance) - 1]->trajet->arrivee ?>
     </p>
 
 <?php endforeach; ?>

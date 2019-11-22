@@ -48,11 +48,13 @@
 
 <?php foreach($context->voyagesCorrespondance as $correspance): ?>
 
+    <p>
     <?php foreach($correspance as $voyage): ?>
-
-        <p><?php echo $voyage->trajet->depart ?></p>
+        <?php echo $voyage->trajet->arrivee ?>
+        <i class="fas fa-caret-right" aria-hidden="true"></i>
 
     <?php endforeach; ?>
+    </p>
 
 <?php endforeach; ?>
 

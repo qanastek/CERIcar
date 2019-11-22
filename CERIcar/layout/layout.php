@@ -7,6 +7,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?php echo $context->getImages($nameApp, 'favicon.png'); ?>" />
 
+    <!-- APP.css -->
     <link rel="stylesheet" href="<?php echo $nameApp; ?>/view/css/app.css">
 
     <!-- Bootstrap -->

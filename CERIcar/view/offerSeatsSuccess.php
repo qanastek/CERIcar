@@ -122,34 +122,49 @@ $("#submit").click(function(){
     var price = $("#price").val();
     var seats = $("#seats").val();
 
-    var constraintsArray = [];
-    constraintsArray.push($("#nosmoking").val());
-    constraintsArray.push($("#noanimals").val());
-    constraintsArray.push($("#noguns").val());
-    var constraints = constraintsArray.join('|');
+    if (cityFrom == "" || cityTo == "" || fromHour == "" || price == "" || seats == "") {
+        alert("Le formulaire est incompler.");
+    }
+    else {
 
-    $.ajax({
-        url: "monApplicationAjax.php?action=offerSeats",
-        type: "post",
-        data: {
-            "cityFrom": cityFrom,
-            "cityTo": cityTo,
-
-            "fromHour": fromHour,
-
-            "price": price,
-            "seats": seats,
-
-            "contraints": constraints
-        },
-        success: function(response) {
-            $.get( "monApplicationAjax.php?action=searchVoyage", function(data) {
-                $( "#mainContent" ).html( data );
-            });
-        },
-        error: function(xhr) {
-            console.log("fail");
+        if (price <= 14 || price >= 300) {
+            alert("Prix incorrect.");
         }
-    });
+        else if (seats < 1 || seats > 10) {
+            alert("Nombre de sièges incorrect.");            
+        }
+        else {
+
+            var constraintsArray = [];
+            constraintsArray.push($("#nosmoking").val());
+            constraintsArray.push($("#noanimals").val());
+            constraintsArray.push($("#noguns").val());
+            var constraints = constraintsArray.join('|');
+
+            $.ajax({
+                url: "monApplicationAjax.php?action=offerSeats",
+                type: "post",
+                data: {
+                    "cityFrom": cityFrom,
+                    "cityTo": cityTo,
+
+                    "fromHour": fromHour,
+
+                    "price": price,
+                    "seats": seats,
+
+                    "contraints": constraints
+                },
+                success: function(response) {
+                    $.get( "monApplicationAjax.php?action=searchVoyage", function(data) {
+                        $( "#mainContent" ).html( data );
+                    });
+                },
+                error: function(xhr) {
+                    console.log("fail");
+                }
+            });
+        }   
+    }
 });
 </script>

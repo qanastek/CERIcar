@@ -8,7 +8,7 @@
         <div class="fieldSearchWrapper">
             <input 
                 type="text"
-                class="form-control from"
+                class="form-control from fieldSearch"
                 list="citiesFrom"
                 name="from"
                 autocomplete=off

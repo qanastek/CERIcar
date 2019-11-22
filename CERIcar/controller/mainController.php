@@ -104,10 +104,16 @@ class mainController
 				$_SESSION["from"],
 				$_SESSION["to"]
 			);
+
+			if ($trajet == null) {
+				$_SESSION["notification"] = "Le trajet n'existe pas !";
+				$_SESSION["notification_status"] = "warning";
+				return context::NONE;
+			}
 		
 			$context->voyages = voyageTable::getVoyagesByTrajet($trajet->id);
 			
-			// $context->nbVoyagesDisponible = voyageTable::NbVoyagesTrajet($trajet->id);
+			$context->nbVoyagesDisponible = voyageTable::NbVoyagesTrajet($trajet->id);
 
 			// Vérifier que l'ont a bien des voyages en retour
 			if (count($context->voyages) > 0) {
@@ -123,7 +129,6 @@ class mainController
 		} else {
 			$_SESSION["notification"] = "No from or destination";
 			$_SESSION["notification_status"] = "warning";
-			// throw new Exception("Empty field", 1);
 			return context::ERROR;
 		}
 	}
@@ -199,6 +204,18 @@ class mainController
 
 			isset($_POST["contraints"])
 		) {
+
+			$trajet = trajetTable::getTrajet(
+				$_SESSION["cityFrom"],
+				$_SESSION["cityTo"]
+			);
+
+			// Vérifie si le trajet existe vraiement
+			if ($trajet == null) {
+				$_SESSION["notification"] = "Trajet inconnu";
+				$_SESSION["notification_status"] = "warning";
+				return context::ERROR;
+			}
 
 			// Ajout des voyages dans la DB
 			voyageTable::addVoyage(

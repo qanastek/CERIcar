@@ -14,10 +14,11 @@ class trajetTable {
 		$trajet = $trajetRepository->findOneBy(array('depart' => $depart,'arrivee' => $arrivee));
 		
 		if ($trajet == false) {
-			echo 'Erreur sql';
+			return null;
 		}
-
-		return $trajet;
+		else {
+			return $trajet;
+		}
 	}
 
 	/**

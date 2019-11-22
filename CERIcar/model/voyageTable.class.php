@@ -66,16 +66,13 @@ class voyageTable {
 	{
 		$em = dbconnection::getInstance()->getEntityManager();
 
-		$queryBuilder = $em->createQueryBuilder();
 
-		$queryBuilder->select('NbVoyagesTrajet(?)')
-		->setParameter(1, $idTrajet);
-		
-		$rslt = $queryBuilder->getQuery()->execute();
+		$sql = 'SELECT nbvoyagestrajet from NbVoyagesTrajet(' . $idTrajet . ')';
+		$stmt = $em->getConnection()->prepare($sql);
+		$stmt->execute();
+		$rslt = $stmt->fetchAll();
 
-		echo $rslt;
-
-		return $rslt;
+		return $rslt[0]["nbvoyagestrajet"];
 	}
 	
 	public static function addVoyage(

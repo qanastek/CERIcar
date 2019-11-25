@@ -102,10 +102,166 @@ footer p {
     line-height: 1.06;
 }
 
-.centeredSearch {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 662px;
+@media (orientation: landscape) { 
+    .centeredSearch {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 45vw;
+    }
+}
+
+@media (orientation: portrait) {
+    .centeredSearch {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 90vw;
+    }
+}
+
+@media (orientation: landscape) { 
+
+    .header-content {
+        color: #ffffff;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        z-index: 2;
+        background: linear-gradient(0deg, rgba(0, 0, 0, .4) 72%, rgba(0, 0, 0, .2) 85%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    .header-title {
+        font-size: 3em;
+        font-weight: 700;
+        margin: 0%;
+    }
+
+    .header-subtitle {
+        font-size: 1.25em;
+        font-weight: 600;
+    }
+
+    .motto-index-0 {
+        padding-left: 25%;
+        padding-right: 25%;
+        padding-top: 3%;
+        padding-bottom: 3%;
+        text-align: center;
+    }
+
+    .motto-index-0 h4 {
+        font-weight: 700;
+        font-size: 1.45em;
+        color: #21314D;
+    }
+
+    .motto-index-0 p {
+        font-size: 17px;
+        line-height: 1.5em;
+        color: #8C8A8C;
+    }
+
+    .motto-title {
+        color: #21314D;
+        font-size: 2em;
+        font-weight: 700;
+    }
+    
+    .motto-text {
+        color: #8C8A8C;
+        font-size: 1.2em;
+    }
+
+    .motto-content {
+        max-width: 60%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 25%;
+        margin-bottom: auto;
+    }
+
+    .motto-img {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        object-fit: cover;
+    }
+}
+
+@media (orientation: portrait) {
+
+    .header-content {
+        color: #ffffff;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        z-index: 2;
+        padding-left: 5%;
+        padding-right: 5%;
+        background: linear-gradient(0deg, rgba(0, 0, 0, .4) 72%, rgba(0, 0, 0, .2) 85%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    .header-title {
+        font-size: 2em;
+        font-weight: 700;
+        margin: 0%;
+    }
+
+    .header-subtitle {
+        font-size: 1.1em;
+        font-weight: 600;
+    }
+
+    .motto-index-0 {
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-top: 3%;
+        padding-bottom: 3%;
+        text-align: center;
+    }
+
+    .motto-index-0 h4 {
+        font-weight: 700;
+        font-size: 1.45em;
+        color: #21314D;
+    }
+
+    .motto-index-0 p {
+        font-size: 17px;
+        line-height: 1.5em;
+        color: #8C8A8C;
+    }
+    
+    .motto-title {
+        color: #21314D;
+        font-size: 1.7em;
+        font-weight: 700;
+    }
+    
+    .motto-text {
+        color: #8C8A8C;
+        font-size: 0.9em;
+    }
+
+    .motto-content {
+        max-width: 100%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+        padding-top: 3%;
+        padding-bottom: 3%;
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+    .motto-img {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        object-fit: cover;
+    }
 }
 
 a, u {
@@ -151,13 +307,13 @@ a, u {
 }
 
 @media (orientation: landscape) {
-    .motto img {
+    .motto {
         height: 70vh; 
     }
 }
 
 @media (orientation: portrait) {
-    .motto img {
+    .motto {
         height: 25vh; 
     }
 }

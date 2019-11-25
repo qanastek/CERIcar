@@ -11,34 +11,42 @@
     <!-- Vérifie si il y a des places restantes -->
     <?php if($context->getNbrPlacesRestante($voyage->id) > 0): ?>
 
-    <div class="card mb-3" style="width: 100%;">
+    <div class="card mb-3 shadow" style="width: 100%; border: 0px; border-radius: 16px;">
         <div class="card-body">
 
-            <h5 class="card-title">
-                <?php echo $voyage->heureDepart; ?>:00 à <?php echo $voyage->trajet->depart; ?>
-                <i class="fas fa-caret-right" aria-hidden="true"></i>
-                <?php echo $context->getDureeTrajet($voyage->heureDepart, $voyage->trajet->distance); ?> à <?php echo $voyage->trajet->arrivee; ?>
-            </h5>
+            <div class="row">
 
-            <p class="card-text">
-                <?php echo $voyage->tarif; ?> €
-            </p>
+                <div class="col-md-10">
+                    <h5 class="card-title" style="color: rgb(5, 71, 82);">
+                        <?php echo $voyage->heureDepart; ?>:00 à <?php echo $voyage->trajet->depart; ?>
+                        <i class="fas fa-caret-right" aria-hidden="true"></i>
+                        <?php echo $context->getDureeTrajet($voyage->heureDepart, $voyage->trajet->distance); ?> à <?php echo $voyage->trajet->arrivee; ?>
+                    </h5>
 
-            <p href="#" class="card-link">
-                <?php if($voyage->conducteur->avatar): ?>
-                    <img alt="" class="avatar" src="<?php echo $context->getImages($nameApp, $voyage->conducteur->avatar); ?>">
-                <?php endif; ?>
+                    <p href="#" class="card-link">
+                        <?php if($voyage->conducteur->avatar): ?>
+                            <img alt="" class="avatar" src="<?php echo $context->getImages($nameApp, $voyage->conducteur->avatar); ?>">
+                        <?php endif; ?>
 
-                <?php echo $voyage->conducteur->nom . " " . $voyage->conducteur->prenom; ?>
-            </p>
+                        <?php echo $voyage->conducteur->nom . " " . $voyage->conducteur->prenom; ?>
+                    </p>
 
-            <p>
-                Il reste <?php echo $context->getNbrPlacesRestante($voyage->id); ?> places.
-            </p>
+                    <p>
+                        Il reste <?php echo $context->getNbrPlacesRestante($voyage->id); ?> places.
+                    </p>
+                    
+                    <?php if(isset($_SESSION['user_id'])): ?>
+                        <button class="book button-classic" style="text-transform: uppercase;" value="<?php echo $voyage->id; ?>">Réserver</button>
+                    <?php endif; ?>
+                </div>
+
+                <div class="col-md-2">
+                    <p class="card-text" style="text-align: right; font-weight: 500; font-size: 18px; color: rgb(5, 71, 82);">
+                        <?php echo $voyage->tarif; ?> €
+                    </p>
+                </div>
+            </div>
             
-            <?php if(isset($_SESSION['user_id'])): ?>
-                <button class="book" value="<?php echo $voyage->id; ?>">Réserver</button>
-            <?php endif; ?>
         </div>
     </div>
 

@@ -1,5 +1,5 @@
 <div class="row" style="height: 80vh; width: 100%; margin: 0px;">
-    <div class="col-md-6">
+    <div class="col-md-6 col-xs-12 col-sm-12">
 
         <div style="padding-left: 3%; padding-right: 3%;">
 
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="col-md-6" style="padding: 0px;">
+    <div class="col-md-6 col-xs-12 col-sm-12" style="padding: 0px;">
         <img src="<?php echo $context->getImages($nameApp, 'login.jpg'); ?>" style="width: 100%; height: 100%; object-fit: cover; overflow: hidden;">
     </div>
 </div>

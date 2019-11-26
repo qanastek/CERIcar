@@ -128,24 +128,27 @@ WITH RECURSIVE cte_voyage
         ) select * from cte_voyage where arrivee='Nice';
 
 
-WITH RECURSIVE journey (arrivee,heuredepart,distance,chemin) 
+WITH RECURSIVE current (arrivee,step,distance,chemin) 
 AS
-   (SELECT DISTINCT depart,heuredepart,0, CAST('Paris' AS VARCHAR) 
+   (SELECT DISTINCT depart,0,0, CAST('Paris' AS VARCHAR) 
     FROM (jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) 
     WHERE jabaianb.trajet.depart='Paris'
     UNION  ALL
-    SELECT departure.arrivee,
-            departure.heuredepart,
-           departure.distance + arrival.distance,
-           departure.chemin || ', ' || arrival.depart
-    FROM (jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) AS arrival
-           INNER JOIN journey AS departure
-                 ON departure.arrivee = arrival.depart
+    SELECT recur.arrivee,
+           recur.step+1,
+           recur.distance + next.distance,
+           recur.chemin || ', ' || next.arrivee
+    FROM (jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) AS next
+           INNER JOIN current AS recur
+                 ON recur.arrivee = next.depart
     WHERE 
-        departure.chemin NOT LIKE '%' || arrival.arrivee || '%'
+        recur.chemin NOT LIKE '%' || next.arrivee || '%'
         AND
-        departure.heuredepart < arrival.heuredepart)
-SELECT *
-FROM   journey
-WHERE  arrivee = 'Nice';
-
+        recur.step < 6)
+SELECT DISTINCT *
+FROM   current
+WHERE
+    chemin LIKE '%Marseille'
+    AND
+    (distance / 60) < 24
+ORDER BY distance ASC;

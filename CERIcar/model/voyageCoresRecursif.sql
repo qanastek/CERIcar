@@ -130,11 +130,11 @@ WITH RECURSIVE cte_voyage
 
 WITH RECURSIVE current (arrivee,step,distance,chemin) 
 AS
-   (SELECT DISTINCT depart,0,0, CAST('Paris' AS VARCHAR) 
+   (SELECT depart,0,0, CAST('Paris' AS VARCHAR) 
     FROM (jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) 
     WHERE jabaianb.trajet.depart='Paris'
     UNION  ALL
-    SELECT recur.arrivee,
+    SELECT next.arrivee,
            recur.step+1,
            recur.distance + next.distance,
            recur.chemin || ', ' || next.arrivee
@@ -144,11 +144,28 @@ AS
     WHERE 
         recur.chemin NOT LIKE '%' || next.arrivee || '%'
         AND
-        recur.step < 6)
+        recur.step < 7)
 SELECT DISTINCT *
 FROM   current
 WHERE
-    chemin LIKE '%Marseille'
-    AND
-    (distance / 60) < 24
+    chemin LIKE '%Nice'
 ORDER BY distance ASC;
+--     AND
+--     (distance / 60) < 24
+-- ORDER BY distance ASC;
+
+WITH journey (TO_TOWN, STEPS, DISTANCE, WAY) 
+AS
+   (SELECT DISTINCT JNY_FROM_TOWN, 0, 0, CAST('PARIS' AS VARCHAR(MAX)) 
+    FROM   T_JOURNEY
+    WHERE  JNY_FROM_TOWN = 'PARIS'
+    UNION  ALL
+    SELECT JNY_TO_TOWN, departure.STEPS + 1
+           , departure.DISTANCE + arrival.JNY_KM
+           , departure.WAY + ', ' + arrival.JNY_TO_TOWN
+    FROM   T_JOURNEY AS arrival
+           INNER JOIN journey AS departure
+                 ON departure.TO_TOWN = arrival.JNY_FROM_TOWN)
+SELECT *
+FROM   journey
+WHERE  TO_TOWN = 'TOULOUSE'

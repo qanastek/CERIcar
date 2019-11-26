@@ -134,7 +134,17 @@ class voyageTable {
 		$voyage = new voyage();
 
 		$voyage->conducteur = utilisateurTable::getUserById(intval($userId));
+
+		if (!isset($voyage->conducteur)) {
+			return false;
+		}
+
 		$voyage->trajet = trajetTable::getTrajet($cityFrom,$cityTo);
+
+		if (!isset($voyage->trajet)) {
+			return false;
+		}
+
 		$voyage->tarif = $price;
 		$voyage->nbPlace = $seats;
 		$voyage->heureDepart = $fromHour;
@@ -142,6 +152,8 @@ class voyageTable {
 
 		$em->persist($voyage);
 		$em->flush();
+		
+		return true;
 	}
 
 }

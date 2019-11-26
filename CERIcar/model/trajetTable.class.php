@@ -7,6 +7,13 @@ class trajetTable {
 
   	public static function getTrajet($depart, $arrivee)
 	{
+
+		$depart = strtolower($depart);
+		$depart = ucfirst($depart);
+
+		$arrivee = strtolower($arrivee);
+		$arrivee = ucfirst($arrivee);
+
 		$em = dbconnection::getInstance()->getEntityManager() ;
 
 		$trajetRepository = $em->getRepository('trajet');

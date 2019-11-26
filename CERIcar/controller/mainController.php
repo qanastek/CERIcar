@@ -206,20 +206,20 @@ class mainController
 			isset($_POST["contraints"])
 		) {
 
-			$trajet = trajetTable::getTrajet(
-				$_SESSION["cityFrom"],
-				$_SESSION["cityTo"]
+			$context->trajet = trajetTable::getTrajet(
+				$_POST["cityFrom"],
+				$_POST["cityTo"]
 			);
 
 			// Vérifie si le trajet existe vraiement
-			if ($trajet == null) {
+			if ($context->trajet == null) {
 				$_SESSION["notification"] = "Trajet inconnu";
 				$_SESSION["notification_status"] = "warning";
 				return context::ERROR;
 			}
 
 			// Ajout des voyages dans la DB
-			voyageTable::addVoyage(
+			$rslt = voyageTable::addVoyage(
 				$_POST["cityFrom"],
 				$_POST["cityTo"],
 
@@ -230,6 +230,16 @@ class mainController
 
 				$_POST["contraints"]
 			);
+
+			if ($rslt == null) {
+				
+				$_SESSION["notification"] = "Insertion rater";
+				$_SESSION["notification_status"] = "warning";
+				return context::ERROR;
+
+			} else {
+				return true;
+			}
 
 		} else {	
 			$context->citiesFrom = trajetTable::getAllDepart();

@@ -310,11 +310,21 @@ a, u {
     .motto {
         height: 70vh; 
     }
+
+    .motto-text {
+        background-color: rgb(245, 246, 247);
+        max-height: 100%;
+    }
 }
 
 @media (orientation: portrait) {
     .motto {
         height: 25vh; 
+    }
+
+    .motto-text {
+        background-color: rgb(245, 246, 247);
+        max-height: 100%;
     }
 }
 

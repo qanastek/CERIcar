@@ -31,7 +31,7 @@
     <div class="col-6" style="padding: 0px;">
         <img src="<?php echo $context->getImages($nameApp, 'pic1.jpg'); ?>" class="motto-img">
     </div>
-    <div class="col-6" style="background-color: rgb(245, 246, 247);">
+    <div class="col-6 motto-text">
         <div class="motto-content">
             <h2 class="motto-title">Avoir le choix</h2>
             <p class="motto-text">L'avantage des routes ? Elles vont partout ! Littéralement. Profitez de milliers de destinations.</p>
@@ -40,7 +40,7 @@
 </div>
 
 <div class="row motto">
-    <div class="col-6" style="background-color: rgb(245, 246, 247);">
+    <div class="col-6 motto-text">
         <div class="motto-content">
             <h2 class="motto-title">Communauté</h2>
             <p class="motto-text">Nous connaissons chacun de nos membres et de nos partenaires de bus. Comment ? Nous vérifions profils, avis, et pièces d'identité. Vous savez ainsi avec qui vous voyagez.</p>
@@ -55,7 +55,7 @@
     <div class="col-6" style="padding: 0px;">
         <img src="<?php echo $context->getImages($nameApp, 'pic3.jpg'); ?>" class="motto-img">
     </div>
-    <div class="col-6" style="background-color: rgb(245, 246, 247);">
+    <div class="col-6 motto-text">
         <div class="motto-content">
             <h2 class="motto-title">Assurance</h2>
             <p class="motto-text">Assurez votre voiture à l'année avec BlaBlaSure : profitez de couvertures conçues pour les covoitureurs avec AXA à des tarifs très compétitifs !</p>

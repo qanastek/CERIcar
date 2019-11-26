@@ -201,10 +201,10 @@ class mainController
 			isset($_POST["fromHour"]) &&
 
 			isset($_POST["price"]) &&
-			isset($_POST["seats"]) &&
-
-			isset($_POST["contraints"])
+			isset($_POST["seats"])
 		) {
+
+			$contraintes = $_POST["contraints"] ? $_POST["contraints"] : "";
 
 			$context->trajet = trajetTable::getTrajet(
 				$_POST["cityFrom"],
@@ -228,17 +228,15 @@ class mainController
 				$_POST["price"],
 				$_POST["seats"],
 
-				$_POST["contraints"]
+				$contraintes
 			);
 
-			if ($rslt == null) {
-				
+			if ($rslt == null) {				
 				$_SESSION["notification"] = "Insertion rater";
 				$_SESSION["notification_status"] = "warning";
 				return context::ERROR;
-
 			} else {
-				return true;
+				return context::SUCCESS;
 			}
 
 		} else {	

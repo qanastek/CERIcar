@@ -16,7 +16,11 @@ class voyageTable {
 		$em = dbconnection::getInstance()->getEntityManager();
 
 		$voyageRepository = $em->getRepository('voyage');
-		$voyage = $voyageRepository->findBy(array('trajet' => $trajet));
+		$voyage = $voyageRepository
+		->findBy(
+			array('trajet' => $trajet),
+			array('heureDepart' => 'ASC')
+		);
 
 		return $voyage; 
 	}
@@ -152,7 +156,7 @@ class voyageTable {
 
 		$em->persist($voyage);
 		$em->flush();
-		
+
 		return true;
 	}
 

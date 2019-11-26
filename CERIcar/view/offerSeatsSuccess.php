@@ -152,9 +152,19 @@ $("#submit").click(function(){
         else {
 
             var constraintsArray = [];
-            constraintsArray.push($("#nosmoking").val());
-            constraintsArray.push($("#noanimals").val());
-            constraintsArray.push($("#noguns").val());
+
+            if ($("#nosmoking").prop('checked')) {
+                constraintsArray.push($("#nosmoking").val());                
+            }
+
+            if ($("#noanimals").prop('checked')) {
+                constraintsArray.push($("#noanimals").val());               
+            }
+
+            if ($("#noguns").prop('checked')) {
+                constraintsArray.push($("#noguns").val());               
+            }
+
             var constraints = constraintsArray.join('|');
 
             $.ajax({

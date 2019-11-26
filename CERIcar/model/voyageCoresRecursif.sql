@@ -80,11 +80,7 @@ select voyageCoresRecursif('Paris','Nice');
 DROP FUNCTION IF EXISTS testCte();
 
 CREATE OR REPLACE FUNCTION testCte()
-RETURNS TABLE (
-    empno int,
-    ename varchar(80),
-    mgr int
-)
+RETURNS TABLE
 as 
 $$
     declare 
@@ -92,26 +88,64 @@ $$
     begin 
         WITH RECURSIVE cte_numbers 
         AS (
-            SELECT 
+           SELECT 
                 empno,
-                ename,
+                ename, 
                 mgr
             from 
                 emp 
-            where mgr is null    
+            where mgr is null   
             UNION ALL
             SELECT    
                 c.empno,
                 c.ename,
-                c.mgr
+                c.mgr 
             FROM
                 emp c
                 INNER JOIN cte_numbers o
                     on o.empno = c.mgr
-        )
-        select * from cte_numbers;
+        ) select * from cte_numbers;
     end;
 $$
 LANGUAGE plpgsql;
 
 select * from testCte();
+
+
+WITH RECURSIVE cte_voyage 
+        AS (  
+            select trajet.id,depart,arrivee
+            FROM jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id 
+            WHERE jabaianb.trajet.depart='Paris'
+            UNION ALL
+            select 
+                c.id,
+                c.depart,
+                c.arrivee
+            FROM jabaianb.trajet c,cte_voyage o
+            where c.arrivee = o.depart
+                
+        ) select * from cte_voyage where arrivee='Nice';
+
+
+WITH RECURSIVE journey (arrivee,heuredepart,distance,chemin) 
+AS
+   (SELECT DISTINCT depart,heuredepart,0, CAST('Paris' AS VARCHAR) 
+    FROM (jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) 
+    WHERE jabaianb.trajet.depart='Paris'
+    UNION  ALL
+    SELECT departure.arrivee,
+            departure.heuredepart,
+           departure.distance + arrival.distance,
+           departure.chemin || ', ' || arrival.depart
+    FROM (jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) AS arrival
+           INNER JOIN journey AS departure
+                 ON departure.arrivee = arrival.depart
+    WHERE 
+        departure.chemin NOT LIKE '%' || arrival.arrivee || '%'
+        AND
+        departure.heuredepart < arrival.heuredepart)
+SELECT *
+FROM   journey
+WHERE  arrivee = 'Nice';
+

@@ -128,6 +128,16 @@ WITH RECURSIVE cte_voyage
         ) select * from cte_voyage where arrivee='Nice';
 
 
+
+
+
+
+-- La vrai requête
+-- Contraintes:
+    -- Durée totale du voyage: MAX 24H
+-- Ordre de présentation:
+    -- Distance les plus courte en premier
+    -- Nombre d'escale le plus faible en premier si la distance est la même
 WITH RECURSIVE current (arrivee,step,distance,chemin) 
 AS
    (SELECT depart,0,0, CAST('Paris' AS VARCHAR) 
@@ -149,10 +159,70 @@ SELECT DISTINCT *
 FROM   current
 WHERE
     chemin LIKE '%Nice'
-ORDER BY distance ASC;
---     AND
---     (distance / 60) < 24
--- ORDER BY distance ASC;
+AND
+    (current.distance / 60) < 24
+ORDER BY
+    distance ASC,
+    step ASC;
+
+
+
+
+-- En cours
+CREATE OR REPLACE FUNCTION correspondances(from_city VARCHAR, to_city VARCHAR)
+RETURNS TABLE (
+    arrivee VARCHAR,
+    step INTEGER,
+    distance INTEGER,
+    chemin VARCHAR
+)
+AS $$
+DECLARE
+    rslt TABLE(
+        arrivee VARCHAR,
+        step INTEGER,
+        distance INTEGER,
+        chemin VARCHAR
+    );
+BEGIN
+
+    WITH RECURSIVE current (arrivee,step,distance,chemin) 
+    AS
+    (SELECT depart,0,0, CAST('Paris' AS VARCHAR) 
+        FROM (jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) 
+        WHERE jabaianb.trajet.depart='Paris'
+        UNION  ALL
+        SELECT next.arrivee,
+            recur.step+1,
+            recur.distance + next.distance,
+            recur.chemin || ', ' || next.arrivee
+        FROM (jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) AS next
+            INNER JOIN current AS recur
+                    ON recur.arrivee = next.depart
+        WHERE 
+            recur.chemin NOT LIKE '%' || next.arrivee || '%'
+            AND
+            recur.step < 7)
+    SELECT DISTINCT * INTO rslt
+    FROM   current
+    WHERE
+        chemin LIKE '%Nice'
+    AND
+        (current.distance / 60) < 24
+    ORDER BY
+        distance ASC,
+        step ASC;
+
+    RETURN rslt;
+
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+
 
 WITH journey (TO_TOWN, STEPS, DISTANCE, WAY) 
 AS

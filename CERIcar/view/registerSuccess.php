@@ -1,4 +1,4 @@
-<div>
+<div class="centeredSearch">
 
     <h1>Inscrivez-vous</h1>
 

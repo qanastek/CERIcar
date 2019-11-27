@@ -16,7 +16,7 @@
 
             <div class="row">
 
-                <div class="col-md-10">
+                <div class="col-10">
                     <h5 class="card-title" style="color: rgb(5, 71, 82);">
                         <?php echo $voyage->heureDepart; ?>:00 à <?php echo $voyage->trajet->depart; ?>
                         <i class="fas fa-caret-right" aria-hidden="true"></i>
@@ -40,7 +40,7 @@
                     <?php endif; ?>
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-2">
                     <p class="card-text" style="text-align: right; font-weight: 500; font-size: 18px; color: rgb(5, 71, 82);">
                         <?php echo $voyage->tarif; ?> €
                     </p>
@@ -56,19 +56,36 @@
 
 <?php foreach($context->voyagesCorrespondance as $correspance): ?>
 
-    <p>        
+    <div class="card mb-3 shadow" style="width: 100%; border: 0px; border-radius: 16px;">
+        <div class="card-body">
 
-    <?php echo $correspance[0]->trajet->depart ?>
-    <i class="fas fa-caret-right" aria-hidden="true"></i>
+            <div class="row">
 
-    <?php for($i = 1; $i < count($correspance); $i++): ?>
-        
-        <?php echo $correspance[$i]->trajet->depart ?>
-        <i class="fas fa-caret-right" aria-hidden="true"></i>
+                <div class="col-10">
 
-    <?php endfor; ?>
-    <?php echo $correspance[count($correspance) - 1]->trajet->arrivee ?>
-    </p>
+                    <p>        
+                        <?php echo $correspance[0]->trajet->depart ?>
+                        <i class="fas fa-caret-right" aria-hidden="true"></i>
+
+                        <?php for($i = 1; $i < count($correspance); $i++): ?>
+                            
+                            <?php echo $correspance[$i]->trajet->depart ?>
+                            <i class="fas fa-caret-right" aria-hidden="true"></i>
+
+                        <?php endfor; ?>
+                        <?php echo $correspance[count($correspance) - 1]->trajet->arrivee; ?>
+                    </p>
+                </div>
+
+                <div class="col-2">
+                    <p class="card-text" style="text-align: right; font-weight: 500; font-size: 18px; color: rgb(5, 71, 82);">
+                        50 €
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
 
 <?php endforeach; ?>
 

@@ -43,14 +43,13 @@ class voyageTable {
 	/**
 	 * Get all the correspondances for a spefic trajet
 	 * @param Integer $id
-	 * @return Voyage[]
+	 * @return Array
 	 */
   	public static function getCorrespondances($trajet) 
 	{
 		$em = dbconnection::getInstance()->getEntityManager();
 
-
-		$sql = "SELECT voyagecores from voyageCores('" . $trajet->depart . "','" . $trajet->arrivee . "')";
+		$sql = "SELECT * from correspondances('" . $trajet->depart . "','" . $trajet->arrivee . "')";
 		$stmt = $em->getConnection()->prepare($sql);
 		$stmt->execute();
 		$rslt = $stmt->fetchAll();
@@ -59,28 +58,31 @@ class voyageTable {
 
 		foreach ($rslt as $item) {
 
-			$splited = explode("|", (string) $item["voyagecores"]);
+			// Array des nom des villes parcourus
+			$villes = explode(',', $item["chemin"]);
+			// Colle les avec des fleches
+			$villes = implode(' <i class="fas fa-caret-right" aria-hidden="true"></i> ', $villes);
 
-			$subarray = array();
+			// Array contenant tous les ID's
+			$ids = explode(',', $item["chemin_id"]);
+			$voyagesIds = array_slice($ids, 1);
 
-			foreach ($splited as $id) {
-				$voyage = voyageTable::getVoyageById((int) $id);
-				array_push(
-					$subarray,
-					$voyage
-				);
-			}
+			$departHeure = voyageTable::getVoyageById($voyagesIds[0])->heureDepart;	
 
-			array_push($array,$subarray);
+			// Récupère l'heure d'arrivé
+			$arriveeHeure = $item["heurearrivee"];
+
+			$subarray = array(
+				"villes" => $villes, 					// Villes en string
+				"voyagesIds" => $ids, 					// Tous les ID's
+				"prix_total" => $item["prix_total"], 	// Prix total de la course
+				"departHeure" => $departHeure,			// Heure de départ
+				"arriveeHeure" => $arriveeHeure,		// Heure d'arrivé
+			);
+
+			array_push($array, $subarray);
 		}
-		// $test = array();
-		// array_push($test,"subarray");
-
-		// $test2 = array();
-		// array_push($test2,$test);
-
-		// var_dump($test2);
-		// echo $test2[0][0];
+		
 		return $array;
 	}
 

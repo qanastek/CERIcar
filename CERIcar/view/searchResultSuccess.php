@@ -64,22 +64,17 @@
                 <div class="col-10">
 
                     <p>        
-                        <?php echo $correspance[0]->trajet->depart ?>
-                        <i class="fas fa-caret-right" aria-hidden="true"></i>
-
-                        <?php for($i = 1; $i < count($correspance); $i++): ?>
-                            
-                            <?php echo $correspance[$i]->trajet->depart ?>
-                            <i class="fas fa-caret-right" aria-hidden="true"></i>
-
-                        <?php endfor; ?>
-                        <?php echo $correspance[count($correspance) - 1]->trajet->arrivee; ?>
+                        <?php echo $correspance["departHeure"]; ?>
+                        à 
+                        <?php echo $correspance["villes"]; ?>
+                        à
+                        <?php echo $correspance["arriveeHeure"]; ?>
                     </p>
                 </div>
 
                 <div class="col-2">
                     <p class="card-text" style="text-align: right; font-weight: 500; font-size: 18px; color: rgb(5, 71, 82);">
-                        50 €
+                        <?php echo $correspance["prix_total"]; ?> €
                     </p>
                 </div>
             </div>

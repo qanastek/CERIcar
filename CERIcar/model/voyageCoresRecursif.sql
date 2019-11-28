@@ -172,7 +172,8 @@ WHERE
 ORDER BY
     distance_totale ASC,
     step ASC,
-    prix_total ASC;
+    prix_total ASC,
+    heure_arrive ASC;
 
 select * FROM jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id order by voyage.id ASC;
 
@@ -182,54 +183,97 @@ recur.chemin_id || ',' || next.voyage.id
 
 
 -- En cours
+
+
+DROP FUNCTION IF EXISTS correspondances(from_city VARCHAR, to_city VARCHAR)
+
 CREATE OR REPLACE FUNCTION correspondances(from_city VARCHAR, to_city VARCHAR)
 RETURNS TABLE (
     arrivee VARCHAR,
     step INTEGER,
-    distance INTEGER,
-    chemin VARCHAR
+    distance_totale INTEGER,
+    chemin VARCHAR,
+    chemin_id VARCHAR,
+    heure INTEGER,
+    prix_total INTEGER,
+    heure_arrive INTEGER
 )
 AS $$
-DECLARE
-    rslt TABLE(
-        arrivee VARCHAR,
-        step INTEGER,
-        distance INTEGER,
-        chemin VARCHAR
-    );
 BEGIN
-
-    WITH RECURSIVE current (arrivee,step,distance,chemin) 
+    RETURN QUERY
+    WITH RECURSIVE current (arrivee,step,distance_totale,chemin,chemin_id,heure,prix_total,heure_arrive) 
     AS
-    (SELECT depart,0,0, CAST('Paris' AS VARCHAR) 
+    (
+        SELECT depart,0,0, CAST(from_city AS VARCHAR) ,CAST('0' AS VARCHAR),0,0,heuredepart
         FROM (jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) 
-        WHERE jabaianb.trajet.depart='Paris'
+        WHERE jabaianb.trajet.depart = from_city
         UNION  ALL
         SELECT next.arrivee,
-            recur.step+1,
-            recur.distance + next.distance,
-            recur.chemin || ', ' || next.arrivee
-        FROM (jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) AS next
+            recur.step + 1,
+            recur.distance_totale + next.distance,
+            recur.chemin || ', ' || next.arrivee,
+            recur.chemin_id || ',' || next.id,
+            next.heuredepart,
+            recur.prix_total +tarif,
+            next.heuredepart + (next.distance/60)
+            
+        FROM (select depart,trajet.arrivee,distance,heuredepart,voyage.id,tarif from jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) AS next
             INNER JOIN current AS recur
                     ON recur.arrivee = next.depart
         WHERE 
             recur.chemin NOT LIKE '%' || next.arrivee || '%'
             AND
-            recur.step < 7)
-    SELECT DISTINCT * INTO rslt
+            recur.step < 7
+            AND
+            recur.heure_arrive <= next.heuredepart
+            AND
+            (recur.distance_totale / 60 ) < 24
+    )
+    SELECT DISTINCT *
     FROM   current
     WHERE
-        chemin LIKE '%Nice'
-    AND
-        (current.distance / 60) < 24
+        current.chemin LIKE '%' || to_city
     ORDER BY
-        distance ASC,
-        step ASC;
-
-    RETURN rslt;
-
+        distance_totale ASC,
+        step ASC,
+        prix_total ASC,
+        heure_arrive ASC;
 END;
 $$ LANGUAGE plpgsql;
+
+select correspondances('Paris','Marseille');
+
+
+
+CREATE FUNCTION GetDistributionTable 
+(
+    @IntID int,
+    @TestID int,
+    @DateFrom datetime,
+    @DateTo datetime
+)
+RETURNS 
+@Table_Var TABLE 
+(
+    [Count] int, 
+    Result float
+)
+AS
+BEGIN
+  WITH T 
+    AS (    
+        select Ticket_Id,COUNT(1) Result from 
+        Customer_Survey
+        group by MemberID,SiteId,Ticket_Id
+   )
+  INSERT INTO @Table_Var ([Count], Result)
+  SELECT COUNT(*) AS [Count],
+       Result
+  FROM   T
+  GROUP  BY Result
+  RETURN 
+END
+GO
 
 
 

@@ -138,33 +138,46 @@ WITH RECURSIVE cte_voyage
 -- Ordre de présentation:
     -- Distance les plus courte en premier
     -- Nombre d'escale le plus faible en premier si la distance est la même
-WITH RECURSIVE current (arrivee,step,distance,chemin) 
+WITH RECURSIVE current (arrivee,step,distance_totale,chemin,chemin_id,heure,prix_total,heure_arrive) 
 AS
-   (SELECT depart,0,0, CAST('Paris' AS VARCHAR) 
+   (SELECT depart,0,0, CAST('Paris' AS VARCHAR) ,CAST('0' AS VARCHAR),0,0,heuredepart
     FROM (jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) 
     WHERE jabaianb.trajet.depart='Paris'
     UNION  ALL
     SELECT next.arrivee,
-           recur.step+1,
-           recur.distance + next.distance,
-           recur.chemin || ', ' || next.arrivee
-    FROM (jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) AS next
+           recur.step + 1,
+           recur.distance_totale + next.distance,
+           recur.chemin || ', ' || next.arrivee,
+           recur.chemin_id || ',' || next.id,
+           next.heuredepart,
+           recur.prix_total +tarif,
+           next.heuredepart + (next.distance/60)
+           
+    FROM (select depart,arrivee,distance,heuredepart,voyage.id,tarif from jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) AS next
            INNER JOIN current AS recur
                  ON recur.arrivee = next.depart
     WHERE 
         recur.chemin NOT LIKE '%' || next.arrivee || '%'
         AND
-        recur.step < 7)
+        recur.step < 7
+        AND
+        recur.heure_arrive <= next.heuredepart
+        AND
+        (recur.distance_totale / 60 ) < 24
+    )
 SELECT DISTINCT *
 FROM   current
 WHERE
     chemin LIKE '%Nice'
-AND
-    (current.distance / 60) < 24
 ORDER BY
-    distance ASC,
-    step ASC;
+    distance_totale ASC,
+    step ASC,
+    prix_total ASC;
 
+select * FROM jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id order by voyage.id ASC;
+
+
+recur.chemin_id || ',' || next.voyage.id
 
 
 

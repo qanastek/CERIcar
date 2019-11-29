@@ -145,8 +145,6 @@ BEGIN
         WHERE 
             recur.chemin NOT LIKE '%' || next.arrivee || '%'
             AND
-            recur.step < 7
-            AND
             recur.heure_arrive <= next.heuredepart
             AND
             (recur.distance_totale / 60 ) < 24
@@ -157,6 +155,8 @@ BEGIN
     FROM   current
     WHERE
         current.chemin LIKE '%' || to_city
+        AND
+        current.step > 1
     ORDER BY
         distance_totale ASC,
         step ASC,

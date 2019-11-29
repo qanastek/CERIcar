@@ -130,7 +130,13 @@ $(".book").click(function(){
         },
         success: function(response) {
             $.get( "monApplicationAjax.php?action=book", function(data) {
+
                 $( "#mainContent" ).html( data );
+
+                $.get( "monApplicationAjax.php?action=banner", function(banner) {
+                    $( "#statusBar" ).html( banner );
+                });
+                
             });
         },
         error: function(xhr) {

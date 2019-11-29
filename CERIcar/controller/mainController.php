@@ -240,6 +240,8 @@ class mainController
 				$_SESSION["notification_status"] = "warning";
 				return context::ERROR;
 			} else {
+				$_SESSION["notification"] = "Insertion réussite";
+				$_SESSION["notification_status"] = "success";
 				return context::SUCCESS;
 			}
 

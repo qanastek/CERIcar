@@ -152,7 +152,7 @@ class context
 		$speed = 1;
 		$duration = $speed * $distance;
 
-		$hour = $heureDepart + round($duration / 60);
+		$hour = $heureDepart + floor($duration / 60);
 		$min = round($duration % 60);
 
 		$rslt = $hour % 24 . ":" . $min;

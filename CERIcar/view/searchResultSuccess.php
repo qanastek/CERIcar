@@ -67,7 +67,7 @@
                 <div class="col-10">
 
                     <p>        
-                        <?php echo $correspance["departHeure"]; ?>
+                        <?php echo $correspance["departHeure"]; ?>:00
                         à 
                         <?php echo $correspance["villes"]; ?>
                         à

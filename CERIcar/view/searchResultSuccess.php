@@ -41,13 +41,13 @@
                     </p>
                     
                     <?php if(isset($_SESSION['user_id'])): ?>
-                        <button class="book button-classic" style="text-transform: uppercase;" value="<?php echo $voyage->id; ?>">Réserver</button>
+                        <button class="bookBtn button-classic" style="text-transform: uppercase;" value="<?php echo $voyage->id; ?>">Réserver</button>
                     <?php endif; ?>
                 </div>
 
                 <div class="col-2">
                     <p class="card-text" style="text-align: right; font-weight: 500; font-size: 18px; color: rgb(5, 71, 82);">
-                        <?php echo $voyage->tarif; ?> €
+                        <span class="price"><?php echo $voyage->tarif; ?></span> €
                     </p>
                 </div>
             </div>
@@ -75,13 +75,13 @@
                     </p>
 
                     <?php if(isset($_SESSION['user_id'])): ?>
-                        <button class="book button-classic" style="text-transform: uppercase;" value="<?php echo $correspance['voyagesIds']; ?>">Réserver</button>
+                        <button class="bookBtn button-classic" style="text-transform: uppercase;" value="<?php echo $correspance['voyagesIds']; ?>">Réserver</button>
                     <?php endif; ?>
                 </div>
 
                 <div class="col-2">
                     <p class="card-text" style="text-align: right; font-weight: 500; font-size: 18px; color: rgb(5, 71, 82);">
-                        <?php echo $correspance["prix_total"]; ?> €
+                        <span class="price"><?php echo $correspance["prix_total"]; ?></span> €
                     </p>
                 </div>
             </div>
@@ -91,6 +91,30 @@
 
 <?php endforeach; ?>
 
+</div>
+
+<div class="modal payementConfirmation" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Êtes-vous sûr ?</h5>
+        <button type="button" class="close deny" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p>Êtes-vous sûr de vouloir payer <span class="priceModal">X</span> € ?</p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary book">Payer</button>
+        <button type="button" class="btn btn-secondary deny" data-dismiss="modal">Annuler</button>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <script>
@@ -113,5 +137,21 @@ $(".book").click(function(){
             console.log("fail");
         }
     });
+});
+
+$(".bookBtn").click(function(){
+
+    var voyageId = $(this).val();
+    var price = $(this).closest(".row").find(".price").text();
+
+    $(".book").val(voyageId);
+    $(".priceModal").text(price);
+
+    $(".payementConfirmation").toggle();
+
+});
+
+$(".deny").click(function(){    
+    $(this).closest(".payementConfirmation").toggle();
 });
 </script>

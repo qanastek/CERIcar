@@ -271,20 +271,10 @@ class mainController
 		if (isset($_POST["voyageId"])) {
 
 			$voyages = $_POST["voyageId"];
-			$voyages = explode(",", $voyages);
-
-			if (count($voyages) == 1) {
-
-				// TODO: Check si un nombre pour des raisons de sécurité
-
-				$reservation = reservationTable::addReservationByVoyage($voyages);
-			}
-			else {
-
-				foreach ($voyages as $item) {
-					reservationTable::addReservationByVoyage($item);
-				}
-
+			$voyagesArray = explode(",", $voyages);
+			
+			foreach ($voyagesArray as $item) {
+				reservationTable::addReservationByVoyage($item);
 			}
 		}
 

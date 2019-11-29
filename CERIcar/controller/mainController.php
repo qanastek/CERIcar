@@ -126,13 +126,13 @@ class mainController
 				$_SESSION["notification_status"] = "success";
 				return context::SUCCESS;
 			} else {
-				$_SESSION["notification"] = "No result";
+				$_SESSION["notification"] = "Pas de résultats !";
 				$_SESSION["notification_status"] = "warning";
 				return context::NONE;
 			}
 	
 		} else {
-			$_SESSION["notification"] = "No from or destination";
+			$_SESSION["notification"] = "Aucun départ ou d'arrivee enregistrer !";
 			$_SESSION["notification_status"] = "warning";
 			return context::ERROR;
 		}
@@ -236,7 +236,7 @@ class mainController
 			);
 
 			if ($rslt == null) {				
-				$_SESSION["notification"] = "Insertion rater";
+				$_SESSION["notification"] = "Insertion râter";
 				$_SESSION["notification_status"] = "warning";
 				return context::ERROR;
 			} else {
@@ -272,7 +272,7 @@ class mainController
 
 			$voyages = $_POST["voyageId"];
 			$voyagesArray = explode(",", $voyages);
-			
+
 			foreach ($voyagesArray as $item) {
 				reservationTable::addReservationByVoyage($item);
 			}
@@ -299,13 +299,13 @@ class mainController
 				$context->setSessionAttribute('user_login', $user->identifiant);
 				return context::SUCCESS;
 			} else {
-				$_SESSION["notification"] = "Bad identifier or password";
+				$_SESSION["notification"] = "Mauvais identifiant ou mot de passe !";
 				$_SESSION["notification_status"] = "warning";
 				return context::ERROR;
 			}
 
 		} else {
-			$_SESSION["notification"] = "No identifier or password";
+			$_SESSION["notification"] = "Identifiant ou mot de passe manquant !";
 			$_SESSION["notification_status"] = "warning";
 			return context::ERROR;
 		}
@@ -326,7 +326,7 @@ class mainController
 			return context::SUCCESS;
 
 		} else {
-			$_SESSION["notification"] = "Currently not connected !";
+			$_SESSION["notification"] = "Actuellement non connecter !";
 			$_SESSION["notification_status"] = "warning";
 			return context::ERROR;
 		}

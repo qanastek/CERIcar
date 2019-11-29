@@ -16,13 +16,23 @@ class voyageTable {
 		$em = dbconnection::getInstance()->getEntityManager();
 
 		$voyageRepository = $em->getRepository('voyage');
-		$voyage = $voyageRepository
+		$voyages = $voyageRepository
 		->findBy(
 			array('trajet' => $trajet),
 			array('heureDepart' => 'ASC')
 		);
 
-		return $voyage; 
+		// Pour chaque voyage
+		for ($i = 0; $i < count($voyages); $i++) { 
+
+			// Le supprimer si celui-ci n'a pas de place disponible
+			if (voyageTable::getPlacesRestantes($voyages[$i]->id) <= 0) {	
+				unset($voyages[$i]);	
+			}
+
+		}
+
+		return $voyages; 
 	}
 
 	/**

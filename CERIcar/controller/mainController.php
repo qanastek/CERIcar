@@ -111,13 +111,17 @@ class mainController
 				return context::NONE;
 			}
 		
+			// Voyages simple
 			$context->voyages = voyageTable::getVoyagesByTrajet($trajet->id);
-			$context->voyagesCorrespondance = voyageTable::getCorrespondances($trajet);
 			
-			$context->nbVoyagesDisponible = voyageTable::NbVoyagesTrajet($trajet->id);
+			// Voyages avec correspondance
+			$context->voyagesCorrespondance = voyageTable::getCorrespondances($trajet);
+
+			// Nombre de voyages total
+			$context->nbVoyagesDisponible = count($context->voyages) + count($context->voyagesCorrespondance);
 
 			// Vérifier que l'ont a bien des voyages en retour
-			if (count($context->voyages) + count($context->voyagesCorrespondance) > 0) {
+			if ($context->nbVoyagesDisponible > 0) {
 				$_SESSION["notification"] = "Trouver !";
 				$_SESSION["notification_status"] = "success";
 				return context::SUCCESS;

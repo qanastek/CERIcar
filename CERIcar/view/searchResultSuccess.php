@@ -3,13 +3,18 @@
 <?php include($nameApp . "/view/fromToBar.php"); ?>
 
 <p>
-    <?php echo $context->nbVoyagesDisponible; ?> voyages disponible
+    <?php echo $context->nbVoyagesDisponible; ?> voyages total disponible
+</p>
+<p>
+    <?php echo count($context->voyages); ?> voyages simple disponible
+</p>
+<p>
+    <?php echo count($context->voyagesCorrespondance); ?> voyages avec correspondance disponible
 </p>
 
 <?php foreach($context->voyages as $voyage): ?>
 
     <!-- Vérifie si il y a des places restantes -->
-    <?php if($context->getNbrPlacesRestante($voyage->id) > 0): ?>
 
     <div class="card mb-3 shadow" style="width: 100%; border: 0px; border-radius: 16px;">
         <div class="card-body">
@@ -49,8 +54,6 @@
             
         </div>
     </div>
-
-    <?php endif; ?>
 
 <?php endforeach; ?>
 

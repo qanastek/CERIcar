@@ -21,15 +21,16 @@ class reservationTable {
 	public static function getReservationsByUser($User) {
 
 		$em = dbconnection::getInstance()->getEntityManager();
+		$qb = $em->createQueryBuilder();
 
-		$reservationRepository = $em->getRepository('reservation');
-		$reservation = $reservationRepository->findBy(
-			array('voyageur' => $User), 
-			array('id' => 'DESC')
-		);
-
-		// echo $User->identifiant;
-		// echo $reservation->id;
+		$reservation = $qb->select('r')
+		->from('reservation','r')
+		->where($qb->expr()->isNotNull('r.voyage'))
+		->andWhere($qb->expr()->isNotNull('r.voyageur'))
+		->andWhere($qb->expr()->eq('r.voyageur', $User->id))
+		->orderBy('r.id', 'ASC')
+		->getQuery()
+		->getResult();
 
 		if ($reservation == false) {
 			echo 'Erreur sql';

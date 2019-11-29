@@ -15,7 +15,7 @@
         <img alt="" class="avatar" src="<?php echo $context->getImages($nameApp, $context->user->avatar); ?>">
     <?php endif; ?>
 
-    <h3>Liste des voyages éffectuer:</h3>
+    <h3>Historique des achats :</h3>
 
     <table class="table">
     <thead>
@@ -28,11 +28,11 @@
     <tbody>
 
         <?php foreach($context->allReservation as $reservation): ?>
-        <tr>
-        <td><?php echo $reservation->voyage->trajet->depart; ?></td>
-        <td><?php echo $reservation->voyage->trajet->arrivee; ?></td>
-        <td><?php echo $reservation->voyage->tarif; ?></td>
-        </tr>
+            <tr>
+                <td><?php echo $reservation->voyage->trajet->depart; ?></td>
+                <td><?php echo $reservation->voyage->trajet->arrivee; ?></td>
+                <td><?php echo $reservation->voyage->tarif; ?> €</td>
+            </tr>
         <?php endforeach; ?>
 
     </tbody>

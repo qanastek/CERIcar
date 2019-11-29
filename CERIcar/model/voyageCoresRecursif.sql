@@ -150,6 +150,8 @@ BEGIN
             recur.heure_arrive <= next.heuredepart
             AND
             (recur.distance_totale / 60 ) < 24
+            AND
+            NbPlacesRestante(next.id) >= 1
     )
     SELECT DISTINCT *
     FROM   current

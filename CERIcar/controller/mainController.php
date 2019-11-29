@@ -265,7 +265,23 @@ class mainController
 	public static function book($request,$context) {
 
 		if (isset($_POST["voyageId"])) {
-			$reservation = reservationTable::addReservationByVoyage($_POST["voyageId"]);
+
+			$voyages = $_POST["voyageId"];
+			$voyages = explode(",", $voyages);
+
+			if (count($voyages) == 1) {
+
+				// TODO: Check si un nombre pour des raisons de sécurité
+
+				$reservation = reservationTable::addReservationByVoyage($voyages);
+			}
+			else {
+
+				foreach ($voyages as $item) {
+					reservationTable::addReservationByVoyage($item);
+				}
+
+			}
 		}
 
 		return context::SUCCESS;

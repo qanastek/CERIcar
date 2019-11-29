@@ -73,11 +73,11 @@ class voyageTable {
 			$arriveeHeure = $item["heurearrivee"];
 
 			$subarray = array(
-				"villes" => $villes, 					// Villes en string
-				"voyagesIds" => $ids, 					// Tous les ID's
-				"prix_total" => $item["prix_total"], 	// Prix total de la course
-				"departHeure" => $departHeure,			// Heure de départ
-				"arriveeHeure" => $arriveeHeure,		// Heure d'arrivé
+				"villes" => $villes, 						// Villes en string
+				"voyagesIds" => implode(",", $voyagesIds), 	// Tous les ID's
+				"prix_total" => $item["prix_total"], 		// Prix total de la course
+				"departHeure" => $departHeure,				// Heure de départ
+				"arriveeHeure" => $arriveeHeure,			// Heure d'arrivé
 			);
 
 			array_push($array, $subarray);

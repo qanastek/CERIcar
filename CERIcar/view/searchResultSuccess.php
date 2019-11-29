@@ -70,6 +70,10 @@
                         à
                         <?php echo $correspance["arriveeHeure"]; ?>
                     </p>
+
+                    <?php if(isset($_SESSION['user_id'])): ?>
+                        <button class="book button-classic" style="text-transform: uppercase;" value="<?php echo $correspance['voyagesIds']; ?>">Réserver</button>
+                    <?php endif; ?>
                 </div>
 
                 <div class="col-2">

@@ -3,6 +3,10 @@
         Profil public de <?php echo $context->user->identifiant; ?>
     </h2>
 
+    <?php if($context->user->avatar): ?>
+        <img alt="" class="avatar" src="<?php echo $context->getImages($nameApp, $context->user->avatar); ?>">
+    <?php endif; ?>
+
     <p>
         Nom: <?php echo $context->user->nom; ?>
     </p>

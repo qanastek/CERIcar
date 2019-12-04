@@ -10,6 +10,10 @@
     <?php echo (isset($_SESSION["to"])) ? $_SESSION["to"] : "Ville d'arrivé"; ?>
   </p>
 
+  <p class="fieldSearch fieldSearchSeats" role="button">
+    <?php echo (isset($_SESSION["seats"])) ? $_SESSION["seats"] : "1"; ?>
+  </p>
+
   <br>
 
   <?php if($context->getSessionAttribute("from") && $context->getSessionAttribute("to")): ?>
@@ -46,6 +50,12 @@ $(".fieldSearchFrom").click(function(){
 
 $(".fieldSearchTo").click(function(){
     $.get( "monApplicationAjax.php?action=searchVoyageTo", function(data) {
+        $( "#mainContent" ).html( data );
+    });
+});
+
+$(".fieldSearchSeats").click(function(){
+    $.get( "monApplicationAjax.php?action=searchVoyageSeats", function(data) {
         $( "#mainContent" ).html( data );
     });
 });

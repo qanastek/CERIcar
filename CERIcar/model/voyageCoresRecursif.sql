@@ -105,9 +105,9 @@ recur.chemin_id || ',' || next.voyage.id
 
 -- Fini
 -- Fonction contenant la requête
-DROP FUNCTION IF EXISTS correspondances(from_city VARCHAR, to_city VARCHAR);
+DROP FUNCTION IF EXISTS correspondances(from_city VARCHAR, to_city VARCHAR, nbrPlaces INTEGER);
 
-CREATE OR REPLACE FUNCTION correspondances(from_city VARCHAR, to_city VARCHAR)
+CREATE OR REPLACE FUNCTION correspondances(from_city VARCHAR, to_city VARCHAR, nbrPlaces INTEGER)
 RETURNS TABLE (
     arrivee VARCHAR,
     step INTEGER,
@@ -149,7 +149,7 @@ BEGIN
             AND
             (recur.distance_totale / 60 ) < 24
             AND
-            NbPlacesRestante(next.id) >= 1
+            NbPlacesRestante(next.id) >= nbrPlaces
     )
     SELECT DISTINCT *
     FROM   current
@@ -165,4 +165,4 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-select * from correspondances('Paris','Nice');
+select * from correspondances('Paris','Nice',2);

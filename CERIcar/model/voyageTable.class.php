@@ -11,7 +11,7 @@ class voyageTable {
 	 * @param Trajet $trajet
 	 * @return Voyage[]
 	 */
-  	public static function getVoyagesByTrajet($trajet) 
+  	public static function getVoyagesByTrajet($trajet,$seats) 
 	{
 		$em = dbconnection::getInstance()->getEntityManager();
 
@@ -22,14 +22,17 @@ class voyageTable {
 			array('heureDepart' => 'ASC')
 		);
 
-		// Pour chaque voyage
-		for ($i = 0; $i < count($voyages); $i++) { 
+		$i = 0;
+		
+		foreach ($voyages as $v) {
+			$nbrPlaceRestanteVoyage = voyageTable::getPlacesRestantes($v->id);
 
 			// Le supprimer si celui-ci n'a pas de place disponible
-			if (voyageTable::getPlacesRestantes($voyages[$i]->id) <= 0) {	
+			if ($nbrPlaceRestanteVoyage < $seats) {	
 				unset($voyages[$i]);	
 			}
 
+			$i++;
 		}
 
 		return $voyages; 
@@ -55,11 +58,11 @@ class voyageTable {
 	 * @param Integer $id
 	 * @return Array
 	 */
-  	public static function getCorrespondances($trajet) 
+  	public static function getCorrespondances($trajet, $seats) 
 	{
 		$em = dbconnection::getInstance()->getEntityManager();
 
-		$sql = "SELECT * from correspondances('" . $trajet->depart . "','" . $trajet->arrivee . "')";
+		$sql = "SELECT * from correspondances('$trajet->depart','$trajet->arrivee',$seats)";
 		$stmt = $em->getConnection()->prepare($sql);
 		$stmt->execute();
 		$rslt = $stmt->fetchAll();

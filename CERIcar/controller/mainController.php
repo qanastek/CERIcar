@@ -50,6 +50,22 @@ class mainController
 	}
 
 	/**
+	 * Saisie du nombre de place pour la réservation
+	 * @param $request
+	 * @param $context
+	 * @return void
+	 */
+	public static function searchVoyageSeats($request,$context)
+	{
+		// Si l'autre champs n'est pas remplit alors go à lui
+		if (isset($_POST['seats']) && $_POST['seats'] != null)
+		{
+			$_SESSION["seats"] = $_POST['seats'] > 0 ? $_POST['seats'] : 1;
+		}
+		return context::SUCCESS;
+	}
+
+	/**
 	 * Vue de saisie de la ville d'arrivé
 	 * @param $request
 	 * @param $context
@@ -110,12 +126,18 @@ class mainController
 				$_SESSION["notification_status"] = "warning";
 				return context::NONE;
 			}
+
+			if (isset($_SESSION["seats"]) && $_SESSION["seats"] != null) {
+				$seats = $_SESSION["seats"];
+			} else {
+				$seats = 1;
+			}
 		
 			// Voyages simple
-			$context->voyages = voyageTable::getVoyagesByTrajet($trajet->id);
+			$context->voyages = voyageTable::getVoyagesByTrajet($trajet->id,$seats);
 			
 			// Voyages avec correspondance
-			$context->voyagesCorrespondance = voyageTable::getCorrespondances($trajet);
+			$context->voyagesCorrespondance = voyageTable::getCorrespondances($trajet,$seats);
 
 			// Nombre de voyages total
 			$context->nbVoyagesDisponible = count($context->voyages) + count($context->voyagesCorrespondance);

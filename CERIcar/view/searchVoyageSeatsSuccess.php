@@ -4,21 +4,10 @@
     <div class="form-group">
 
         <div>
-            <!-- <input 
-                type="text"
-                class="form-control from fieldSearchInput"
-                list="citiesFrom"
-                name="from"
-                autocomplete=off
-                id="from"
-                style="background-color: rgb(237, 237, 237);"
-                placeholder="Ville de départ..."
-                value="<?php echo (isset($_SESSION["from"])) ? $_SESSION["from"] : ""; ?>"
-            > -->
             <input 
                 type="number"
                 class="form-control seats fieldSearchInput"
-                value="<?php echo (isset($_SESSION["from"])) ? $_SESSION["from"] : "1"; ?>"
+                value="<?php echo (isset($_SESSION["seats"])) ? $_SESSION["seats"] : "1"; ?>"
                 name="seats"
                 id="seats"
             >

@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 col-xl-12 card mb-3" style="padding: 0px;">
-            <div class="card-header seats">
+            <div class="card-header offerSeats">
                 Itinéraire
             </div>
 
@@ -40,7 +40,7 @@
     
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 col-xl-12 card mb-3" style="padding: 0px;">
-            <div class="card-header seats">
+            <div class="card-header offerSeats">
                 Horaire
             </div>
 
@@ -80,7 +80,7 @@
 
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 col-xl-12 card mb-3" style="padding: 0px;">
-            <div class="card-header seats">
+            <div class="card-header offerSeats">
                 Informations du trajet
             </div>
 
@@ -100,7 +100,7 @@
 
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 col-xl-12 card mb-3" style="padding: 0px;">
-            <div class="card-header seats">
+            <div class="card-header offerSeats">
                 Contraintes
             </div>
 

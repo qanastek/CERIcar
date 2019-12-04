@@ -23,7 +23,7 @@ class voyageTable {
 		);
 
 		$i = 0;
-		
+
 		foreach ($voyages as $v) {
 			$nbrPlaceRestanteVoyage = voyageTable::getPlacesRestantes($v->id);
 
@@ -84,6 +84,7 @@ class voyageTable {
 
 			// Récupère l'heure d'arrivé
 			$arriveeHeure = $item["heurearrivee"];
+			$placerestante = $item["placerestante"];
 
 			$subarray = array(
 				"villes" => $villes, 						// Villes en string
@@ -91,6 +92,7 @@ class voyageTable {
 				"prix_total" => $item["prix_total"], 		// Prix total de la course
 				"departHeure" => $departHeure,				// Heure de départ
 				"arriveeHeure" => $arriveeHeure,			// Heure d'arrivé
+				"placerestante" => $placerestante,		// Nombre de place restante
 			);
 
 			array_push($array, $subarray);

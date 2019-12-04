@@ -74,6 +74,10 @@
                         <?php echo $correspance["arriveeHeure"]; ?>
                     </p>
 
+                    <p>
+                        Il reste <?php echo $correspance["placerestante"]; ?> places.
+                    </p>
+
                     <?php if(isset($_SESSION['user_id'])): ?>
                         <button class="bookBtn button-classic" style="text-transform: uppercase;" value="<?php echo $correspance['voyagesIds']; ?>">Réserver</button>
                     <?php endif; ?>

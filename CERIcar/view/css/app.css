@@ -300,6 +300,13 @@ a, u {
 }
 
 .seats {
+    background-color: rgb(237, 237, 237) !important;
+    color: #054752;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.offerSeats {
     background-color: #ffffff !important;
     color: #054752;
     font-weight: 600;

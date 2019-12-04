@@ -117,15 +117,16 @@ RETURNS TABLE (
     heure INTEGER,
     prix_total INTEGER,
     heure_arrive INTEGER,
-    heureArrivee VARCHAR
+    heureArrivee VARCHAR,
+    placeRestante INTEGER
 )
 AS $$
 BEGIN
     RETURN QUERY
-    WITH RECURSIVE current (arrivee,step,distance_totale,chemin,chemin_id,heure,prix_total,heure_arrive,heureArrivee) 
+    WITH RECURSIVE current (arrivee,step,distance_totale,chemin,chemin_id,heure,prix_total,heure_arrive,heureArrivee,placeRestante) 
     AS
     (
-        SELECT depart,0,0, CAST(from_city AS VARCHAR) ,CAST('0' AS VARCHAR),0,0,heuredepart,CAST('' AS VARCHAR)
+        SELECT depart,0,0, CAST(from_city AS VARCHAR) ,CAST('0' AS VARCHAR),0,0,heuredepart,CAST('' AS VARCHAR),NbPlacesRestante(voyage.id)
         FROM (jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) 
         WHERE jabaianb.trajet.depart = from_city
         UNION  ALL
@@ -137,7 +138,8 @@ BEGIN
             next.heuredepart,
             recur.prix_total +tarif,
             next.heuredepart + (next.distance / 60),
-            next.heuredepart + (next.distance / 60) || ':' || next.heuredepart + (next.distance % 60)
+            next.heuredepart + (next.distance / 60) || ':' || next.heuredepart + (next.distance % 60),
+            LEAST(recur.placeRestante,NbPlacesRestante(next.id))
             
         FROM (select depart,trajet.arrivee,distance,heuredepart,voyage.id,tarif from jabaianb.voyage join jabaianb.trajet on jabaianb.voyage.trajet = jabaianb.trajet.id) AS next
             INNER JOIN current AS recur
@@ -160,6 +162,7 @@ BEGIN
     ORDER BY
         distance_totale ASC,
         step ASC,
+        placeRestante ASC,
         prix_total ASC,
         heure_arrive ASC;
 END;

@@ -152,6 +152,8 @@ BEGIN
             (recur.distance_totale / 60 ) < 24
             AND
             NbPlacesRestante(next.id) >= nbrPlaces
+            AND
+            recur.placeRestante >= nbrPlaces
     )
     SELECT DISTINCT *
     FROM   current

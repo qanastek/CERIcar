@@ -4,6 +4,8 @@
 #### Labrak Yanis
 #### Vougeot Valentin
 
+![Preview](demo/preview.PNG)
+
 ### Dependances:
 
 * Doctrine - https://www.doctrine-project.org/
